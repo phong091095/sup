@@ -13,6 +13,10 @@ namespace shipping.Services.Implement
         }
         public async Task<ChiTietDVVanChuyen> CreateData(ChiTietDVVanChuyen type)
         {
+            var exists = _context.DonViVanChuyen.FirstOrDefault(x=>x.IDDonViVanChuyen == type.IDDonViVanChuyen);
+            if (exists == null) {
+                return null;
+            }
             _context.ChiTietDVVanChuyen.Add(type);
             await _context.SaveChangesAsync();
             return type;
