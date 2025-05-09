@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\ttphong\\Downloads\\shipping\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\implement\\shipdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\services\\implement\\shipdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\controllers\\shippingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\controllers\\shippingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\implement\\shipdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\services\\implement\\shipdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\implement\\shipsvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +54,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "ShipDetail.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\ShipDetail.cs",
               "RelativeDocumentMoniker": "shipping\\Services\\Implement\\ShipDetail.cs",
@@ -67,13 +67,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\appsettings.json",
               "RelativeDocumentMoniker": "shipping\\appsettings.json",
               "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\appsettings.json",
               "RelativeToolTip": "shipping\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-05-09T12:30:09.215Z",
               "EditorCaption": ""
@@ -104,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ChiTietDVVanChuyen.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\ChiTietDVVanChuyen.cs",
               "RelativeDocumentMoniker": "shipping\\Model\\ChiTietDVVanChuyen.cs",
@@ -112,12 +112,11 @@
               "RelativeToolTip": "shipping\\Model\\ChiTietDVVanChuyen.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T11:43:23.764Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T11:43:23.764Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "DonViVanChuyen.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\DonViVanChuyen.cs",
               "RelativeDocumentMoniker": "shipping\\Model\\DonViVanChuyen.cs",
@@ -125,12 +124,11 @@
               "RelativeToolTip": "shipping\\Model\\DonViVanChuyen.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T11:40:16.32Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T11:40:16.32Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "ShippingController.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Controllers\\ShippingController.cs",
               "RelativeDocumentMoniker": "shipping\\Controllers\\ShippingController.cs",
@@ -138,8 +136,7 @@
               "RelativeToolTip": "shipping\\Controllers\\ShippingController.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAowAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T08:17:25.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T08:17:25.094Z"
             },
             {
               "$type": "Document",
@@ -151,8 +148,7 @@
               "RelativeToolTip": "shipping\\Services\\Implement\\ShipSvc.cs",
               "ViewState": "AgIAABcAAAAAAAAAAAAwwAcAAABzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T06:43:50.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T06:43:50.543Z"
             },
             {
               "$type": "Document",
