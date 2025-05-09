@@ -83,6 +83,6 @@ namespace shipping.Services.Implement
             return type;
         }
 
-       
+        
     }
 }

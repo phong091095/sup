@@ -11,11 +11,13 @@ namespace shipping.Controllers
         private readonly IShipServices<DonViVanChuyen> shipServices;
         private readonly IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO;
         private readonly IPostDTO<ChiTietDonViVanChuyenDTO> postDTO;
-        public ShippingController(IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO, IPostDTO<ChiTietDonViVanChuyenDTO> postDTO)
+        private readonly IPostDTO<ChiTietDVVanChuyen> postDetail;
+        public ShippingController(IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO, IPostDTO<ChiTietDonViVanChuyenDTO> postDTO,IPostDTO<ChiTietDVVanChuyen> postDetail)
         {
             this.shipServices = shipServices;
             this.shipDTO = shipDTO;
             this.postDTO = postDTO;
+            this.postDetail = postDetail;
         }
         [HttpPost]
         public async Task<IActionResult> CreateDVVC(ChiTietDonViVanChuyenDTO dvvc)
@@ -40,6 +42,40 @@ namespace shipping.Controllers
                 thongBao = "Thêm mới đơn vị vận chuyển thành công.",
                 res
             });
+        }
+        [HttpPost("createdetail")]
+        public async Task<IActionResult> CreateDetail(ChiTietDVVanChuyen detail)
+        {
+            if (detail == null)
+            {
+                return BadRequest("Dữ liệu truyền vào bị thiếu");
+            }
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                return BadRequest(new
+                {
+                    thongBao = errors
+                });
+            }
+            var res = await postDetail.CreateData(detail);
+            if (res != null)
+            {
+                return Ok(new
+                {
+                    thongBao = "Thêm mới chi tiết đơn vị vận chuyển thành công.",
+                    res
+                });
+            }
+            else
+            {
+                return BadRequest(new
+                {
+                    thongBao = "Thêm mới chi tiết đơn vị vận chuyển thất bại.",
+                });
+            }
         }
         [HttpPut]
         public async Task<IActionResult> UpdateDVVC(DonViVanChuyen dvvc)

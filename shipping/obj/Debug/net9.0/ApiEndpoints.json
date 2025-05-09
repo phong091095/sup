@@ -72,5 +72,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.ShippingController",
+    "Method": "CreateDetail",
+    "RelativePath": "admin/shipping-providers/createdetail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "detail",
+        "Type": "shipping.Model.ChiTietDVVanChuyen",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
