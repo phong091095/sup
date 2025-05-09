@@ -12,8 +12,8 @@ using shipping.DBContext;
 namespace shipping.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250509092953_InitCreate")]
-    partial class InitCreate
+    [Migration("20250509122354_updateinit12")]
+    partial class updateinit12
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,9 @@ namespace shipping.Migrations
 
             modelBuilder.Entity("shipping.Model.ChiTietDVVanChuyen", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IDCuaHang")
                         .IsRequired()

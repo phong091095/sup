@@ -17,10 +17,6 @@ namespace shipping.Model
         [EnumDataType(typeof(TrangThai), ErrorMessage = "Trạng thái không hợp lệ. Vui lòng chọn 'HoatDong' hoặc 'NgungHoatDong'")]
         public string TrangThai { get; set; } = default!;
     }
-    public enum TrangThai
-    {
-        HoatDong,
-        NgungHoatDong
-    }
+   
 
 }

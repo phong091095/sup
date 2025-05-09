@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace shipping.Migrations
 {
     /// <inheritdoc />
-    public partial class InitCreate : Migration
+    public partial class updateinit12 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,8 +15,7 @@ namespace shipping.Migrations
                 name: "ChiTietDVVanChuyen",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IDCuaHang = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IDDonViVanChuyen = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhiVanChuyen = table.Column<int>(type: "int", nullable: false),

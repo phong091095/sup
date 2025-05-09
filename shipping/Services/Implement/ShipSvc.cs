@@ -5,21 +5,12 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class ShipSvc : IShipServices<DonViVanChuyen>,IShipDTO<ChiTietDonViVanChuyenDTO>
+    public class ShipSvc : IShipServices<DonViVanChuyen>,IShipDTO<ChiTietDonViVanChuyenDTO>,IPostDTO<ChiTietDonViVanChuyenDTO>
     {
         private readonly Context _context;
         public ShipSvc(Context context) {
             _context = context;
         }
-        public async Task<DonViVanChuyen> CreateData(DonViVanChuyen type)
-        {
-            int count = _context.DonViVanChuyen.Count() + 1;
-            type.IDDonViVanChuyen = "GHN" + count;
-            _context.DonViVanChuyen.Add(type);
-            await _context.SaveChangesAsync();
-            return type; 
-        }
-
         public async Task<IEnumerable<DonViVanChuyen>> GetDatas()
         {
             var ds = await _context.DonViVanChuyen.ToListAsync();
@@ -46,42 +37,52 @@ namespace shipping.Services.Implement
             if (ds == null) {
                 return false;
             }
-            ds.TrangThai = "NgungHoatDong";
+            ds.TrangThai = ds.TrangThai == TrangThai.HoatDong.ToString()
+                    ? TrangThai.NgungHoatDong.ToString()
+                    : TrangThai.HoatDong.ToString();
             await _context.SaveChangesAsync();
             return true;
         }
-        
-        public  Task<DonViVanChuyen> GetDataById(string id)
-        {
-            throw new NotImplementedException();
 
-        }
-
-        public async Task<IEnumerable<ChiTietDonViVanChuyenDTO>> GetDataByIds(string id)
+        public async Task<ChiTietDonViVanChuyenDTO?> GetDataByIds(string id)
         {
-            var result = await _context.ChiTietDVVanChuyen
+            var dvvc = await _context.DonViVanChuyen
+                .FirstOrDefaultAsync(x => x.IDDonViVanChuyen == id);
+
+            if (dvvc == null)
+            {
+                return null;
+            }
+
+            var dsChiTiet = await _context.ChiTietDVVanChuyen
                 .Where(ct => ct.IDDonViVanChuyen == id)
-                .Join(_context.DonViVanChuyen,
-                      ct => ct.IDDonViVanChuyen,
-                      dv => dv.IDDonViVanChuyen,
-                      (ct, dv) => new ChiTietDonViVanChuyenDTO
-                      {
-                          ID = ct.ID,
-                          IDCuaHang = ct.IDCuaHang,
-                          IDDonViVanChuyen = ct.IDDonViVanChuyen,
-                          PhiVanChuyen = ct.PhiVanChuyen,
-                          ThoiGianDuKien = ct.ThoiGianDuKien,
-                          NgayCapNhat = ct.NgayCapNhat,
-
-                          TenDonVi = dv.TenDonVi,
-                          SoDienThoai = dv.SoDienThoai,
-                          Email = dv.Email,
-                          MoTa = dv.MoTa,
-                          TrangThai = dv.TrangThai
-                      })
                 .ToListAsync();
+
+            var result = new ChiTietDonViVanChuyenDTO
+            {
+                dvvc = dvvc,
+                dsdetail = dsChiTiet
+            };
 
             return result;
         }
+
+
+        public async Task<ChiTietDonViVanChuyenDTO> CreateData(ChiTietDonViVanChuyenDTO type)
+        {
+            DonViVanChuyen dvvc = type.dvvc;
+            List<ChiTietDVVanChuyen> chitiet = type.dsdetail;
+            int count = _context.DonViVanChuyen.Count() + 1;
+            dvvc.IDDonViVanChuyen = "DVGH" + count;
+            foreach (var item in chitiet) {
+                item.IDDonViVanChuyen = dvvc.IDDonViVanChuyen;
+            }
+            _context.DonViVanChuyen.Add(dvvc);
+            _context.ChiTietDVVanChuyen.AddRange(chitiet);
+            await _context.SaveChangesAsync();
+            return type;
+        }
+
+       
     }
 }

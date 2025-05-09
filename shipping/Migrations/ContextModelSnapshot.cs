@@ -24,11 +24,9 @@ namespace shipping.Migrations
 
             modelBuilder.Entity("shipping.Model.ChiTietDVVanChuyen", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IDCuaHang")
                         .IsRequired()

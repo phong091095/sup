@@ -10,13 +10,15 @@ namespace shipping.Controllers
     {
         private readonly IShipServices<DonViVanChuyen> shipServices;
         private readonly IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO;
-        public ShippingController(IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO)
+        private readonly IPostDTO<ChiTietDonViVanChuyenDTO> postDTO;
+        public ShippingController(IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO, IPostDTO<ChiTietDonViVanChuyenDTO> postDTO)
         {
             this.shipServices = shipServices;
             this.shipDTO = shipDTO;
+            this.postDTO = postDTO;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateDVVC(DonViVanChuyen dvvc)
+        public async Task<IActionResult> CreateDVVC(ChiTietDonViVanChuyenDTO dvvc)
         {
             if (dvvc == null)
             {
@@ -32,7 +34,7 @@ namespace shipping.Controllers
                     thongBao = errors
                 });
             }
-            var res = await shipServices.CreateData(dvvc);
+            var res = await postDTO.CreateData(dvvc);
             return Ok(new
             {
                 thongBao = "Thêm mới đơn vị vận chuyển thành công.",

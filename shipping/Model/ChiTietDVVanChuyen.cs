@@ -5,7 +5,7 @@ namespace shipping.Model
     public class ChiTietDVVanChuyen
     {
         [Key]
-        public int ID { get; set; }
+        public Guid ID { get; set; } = Guid.NewGuid();
         public string IDCuaHang { get; set; } = default!;
         public string IDDonViVanChuyen { get; set; } = default!;
         [Range(0, int.MaxValue, ErrorMessage = "Giá trị phí vân chuyển phải là một số dương")]

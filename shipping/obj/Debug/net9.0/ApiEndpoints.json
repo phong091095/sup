@@ -1,21 +1,5 @@
 [
   {
-    "ContainingType": "shipping.Controllers.ShippingDetailController",
-    "Method": "CreateDetail",
-    "RelativePath": "admin/shipping-detail",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "data",
-        "Type": "shipping.Model.ChiTietDVVanChuyen",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "shipping.Controllers.ShippingController",
     "Method": "CreateDVVC",
     "RelativePath": "admin/shipping-providers",
@@ -25,7 +9,7 @@
     "Parameters": [
       {
         "Name": "dvvc",
-        "Type": "shipping.Model.DonViVanChuyen",
+        "Type": "shipping.Model.ChiTietDonViVanChuyenDTO",
         "IsRequired": true
       }
     ],
