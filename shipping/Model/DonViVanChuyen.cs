@@ -16,7 +16,6 @@ namespace shipping.Model
         public string? MoTa { get; set; } = default!;
         [EnumDataType(typeof(TrangThai), ErrorMessage = "Trạng thái không hợp lệ. Vui lòng chọn 'HoatDong' hoặc 'NgungHoatDong'")]
         public string TrangThai { get; set; } = default!;
-        public ICollection<ChiTietDVVanChuyen>? ChiTietDichVu { get; set; }
 
     }
 
