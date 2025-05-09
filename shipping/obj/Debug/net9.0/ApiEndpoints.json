@@ -1,0 +1,92 @@
+[
+  {
+    "ContainingType": "shipping.Controllers.ShippingDetailController",
+    "Method": "CreateDetail",
+    "RelativePath": "admin/shipping-detail",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "shipping.Model.ChiTietDVVanChuyen",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.ShippingController",
+    "Method": "CreateDVVC",
+    "RelativePath": "admin/shipping-providers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dvvc",
+        "Type": "shipping.Model.DonViVanChuyen",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.ShippingController",
+    "Method": "UpdateDVVC",
+    "RelativePath": "admin/shipping-providers",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dvvc",
+        "Type": "shipping.Model.DonViVanChuyen",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.ShippingController",
+    "Method": "GetAllData",
+    "RelativePath": "admin/shipping-providers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.ShippingController",
+    "Method": "UpdatePatchDVVC",
+    "RelativePath": "admin/shipping-providers/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.ShippingController",
+    "Method": "GetDVByID",
+    "RelativePath": "admin/shipping-providers/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
