@@ -10,9 +10,9 @@ namespace shipping.Controllers
     {
         private readonly IShipServices<DonViVanChuyen> shipServices;
         private readonly IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO;
-        private readonly IPostDTO<ChiTietDonViVanChuyenDTO> postDTO;
+        private readonly IPostDTO<DonViVanChuyen> postDTO;
         private readonly IPostDTO<ChiTietDVVanChuyen> postDetail;
-        public ShippingController(IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO, IPostDTO<ChiTietDonViVanChuyenDTO> postDTO,IPostDTO<ChiTietDVVanChuyen> postDetail)
+        public ShippingController(IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO, IPostDTO<DonViVanChuyen> postDTO,IPostDTO<ChiTietDVVanChuyen> postDetail)
         {
             this.shipServices = shipServices;
             this.shipDTO = shipDTO;
@@ -20,7 +20,7 @@ namespace shipping.Controllers
             this.postDetail = postDetail;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateDVVC(ChiTietDonViVanChuyenDTO dvvc)
+        public async Task<IActionResult> CreateDVVC(DonViVanChuyen dvvc)
         {
             if (dvvc == null)
             {
