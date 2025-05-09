@@ -13,8 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IShipServices<DonViVanChuyen>,ShipSvc>();
-builder.Services.AddScoped<IShipDTO<ChiTietDonViVanChuyenDTO>, ShipSvc > ();
-builder.Services.AddScoped<IPostDTO<ChiTietDonViVanChuyenDTO>, ShipSvc>();
+builder.Services.AddScoped<IPostDTO<DonViVanChuyen>, ShipSvc > ();
 builder.Services.AddScoped<IPostDTO<ChiTietDVVanChuyen>, ShipDetail>();
 
 var connectionString = builder.Configuration.GetConnectionString("Mydb");

@@ -5,7 +5,7 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class ShipSvc : IShipServices<DonViVanChuyen>,IShipDTO<ChiTietDonViVanChuyenDTO>,IPostDTO<ChiTietDonViVanChuyenDTO>
+    public class ShipSvc : IShipServices<DonViVanChuyen>,IPostDTO<DonViVanChuyen>
     {
         private readonly Context _context;
         public ShipSvc(Context context) {
@@ -68,21 +68,13 @@ namespace shipping.Services.Implement
         }
 
 
-        public async Task<ChiTietDonViVanChuyenDTO> CreateData(ChiTietDonViVanChuyenDTO type)
+        public async Task<DonViVanChuyen> CreateData(DonViVanChuyen type)
         {
-            DonViVanChuyen dvvc = type.dvvc;
-            List<ChiTietDVVanChuyen> chitiet = type.dsdetail;
             int count = _context.DonViVanChuyen.Count() + 1;
-            dvvc.IDDonViVanChuyen = "DVGH" + count;
-            foreach (var item in chitiet) {
-                item.IDDonViVanChuyen = dvvc.IDDonViVanChuyen;
-            }
-            _context.DonViVanChuyen.Add(dvvc);
-            _context.ChiTietDVVanChuyen.AddRange(chitiet);
+            type.IDDonViVanChuyen = "DVGH" + count;
+            _context.DonViVanChuyen.Add(type);
             await _context.SaveChangesAsync();
             return type;
-        }
-
-        
+        }        
     }
 }

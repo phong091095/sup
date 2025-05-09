@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\controllers\\shippingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\controllers\\shippingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\implement\\shipsvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\services\\implement\\shipsvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\controllers\\shippingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\controllers\\shippingcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\implement\\shipdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -62,8 +62,7 @@
               "RelativeToolTip": "shipping\\Services\\Implement\\ShipDetail.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T13:29:04.878Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T13:29:04.878Z"
             },
             {
               "$type": "Document",
@@ -75,8 +74,7 @@
               "RelativeToolTip": "shipping\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-05-09T12:30:09.215Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T12:30:09.215Z"
             },
             {
               "$type": "Document",
@@ -98,7 +96,7 @@
               "RelativeDocumentMoniker": "shipping\\Program.cs",
               "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Program.cs",
               "RelativeToolTip": "shipping\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABDAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-09T11:47:36.581Z",
               "EditorCaption": ""
@@ -129,7 +127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "ShippingController.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Controllers\\ShippingController.cs",
               "RelativeDocumentMoniker": "shipping\\Controllers\\ShippingController.cs",
@@ -137,18 +135,17 @@
               "RelativeToolTip": "shipping\\Controllers\\ShippingController.cs",
               "ViewState": "AgIAAC8AAAAAAAAAAAAwwEwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T08:17:25.094Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T08:17:25.094Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "ShipSvc.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\ShipSvc.cs",
               "RelativeDocumentMoniker": "shipping\\Services\\Implement\\ShipSvc.cs",
               "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\ShipSvc.cs",
               "RelativeToolTip": "shipping\\Services\\Implement\\ShipSvc.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAcwE4AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-09T06:43:50.543Z",
               "EditorCaption": ""
@@ -163,8 +160,7 @@
               "RelativeToolTip": "shipping\\Services\\Interface\\IServices.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-09T06:29:22.474Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-09T06:29:22.474Z"
             }
           ]
         }
