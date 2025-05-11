@@ -9,9 +9,5 @@ namespace shipping.Model
         // Thuộc tính từ DonViVanChuyen
         public DonViVanChuyen dvvc { get; set; } = new DonViVanChuyen();
     }
-    public enum TrangThai
-    {
-        HoatDong,
-        NgungHoatDong
-    }
+   
 }

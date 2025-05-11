@@ -28,9 +28,15 @@ namespace shipping.Services.Interface
     {
         Task<Type> GetDataByIds(string id);
     }
-    public interface IPutDTO<Type>
+   public interface IPutData<Type>
     {
         Task<bool> PutData(Type type);
+    }
+    
+    public interface IPutByID<Type>
+    {
+        Task<bool> PutBienTheByID(string id,Type type);
+        Task<bool> PutChiTietBTByID(string id,GiaTriBienTheSanPhamDto type);
     }
     public interface IDeleTeDTO<Type>
     {

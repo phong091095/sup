@@ -1,5 +1,7 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
+using shipping.Model;
 
 #nullable disable
 
@@ -79,6 +81,15 @@ namespace shipping.Migrations
                 principalTable: "PhanLoaiDanhMuc",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.NoAction);
+            migrationBuilder.AddForeignKey(
+                name: "FK_SanPham_BienTheSP_IDBienTheSP",
+                table: "SanPham",
+                column: "IDBienTheSanPham",
+                principalTable: "BienTheSanPham",
+                principalColumn: "IDBienTheSanPham",
+                onDelete: ReferentialAction.NoAction);
+           
+
             migrationBuilder.CreateTable(
                 name: "BienTheSanPham",
                 columns: table => new
@@ -129,15 +140,7 @@ namespace shipping.Migrations
                     principalTable: "ThuocTinhBTSP",
                     principalColumn: "ID",
                     onDelete: ReferentialAction.Cascade);
-
-            
-            migrationBuilder.AddForeignKey(
-                   name: "FK_BienTheSanPham_SanPham_IDSanPham",
-                   table: "BienTheSanPham",
-                   column: "IDSanPham",
-                   principalTable: "SanPham",
-                   principalColumn: "IDSanPham",
-                   onDelete: ReferentialAction.Cascade);
+           
             migrationBuilder.CreateTable(
                 name: "ChiTietBienTheSanPham",
                 columns: table => new

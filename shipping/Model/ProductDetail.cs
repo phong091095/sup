@@ -5,7 +5,7 @@
         public SanPham SanPham { get; set; }
         public DanhMuc DanhMuc { get; set; } 
         public PhanLoaiDanhMuc PhanLoai { get; set; }
-        public List<BienTheSanPhamDTO> BienTheSanPham { get; set; }
+        public BienTheSanPhamDTO BienTheSanPham { get; set; }
 
     }
     public class BienTheSanPhamDTO
