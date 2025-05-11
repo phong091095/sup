@@ -14,7 +14,7 @@ namespace shipping.Model
         [EmailAddress(ErrorMessage ="Địa chỉ email không hợp lệ")]
         public string? Email { get; set; } = default!;
         public string? MoTa { get; set; } = default!;
-        [EnumDataType(typeof(TrangThai), ErrorMessage = "Trạng thái không hợp lệ. Vui lòng chọn 'HoatDong' hoặc 'NgungHoatDong'")]
+        [EnumDataType(typeof(TrangThaiTong.TrangThai), ErrorMessage = "Trạng thái không hợp lệ. Vui lòng chọn 'HoatDong' hoặc 'NgungHoatDong'")]
         public string TrangThai { get; set; } = default!;
 
     }

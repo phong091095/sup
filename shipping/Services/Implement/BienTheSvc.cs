@@ -5,7 +5,7 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class BienTheSvc : IGetDTO<BienTheSanPham>, IPostDTO<BienTheSanPham>, IDeleTeDTO<BienTheSanPham>
+    public class BienTheSvc : IGetAll<BienTheSanPham>, IPostDTO<BienTheSanPham>, IDeleTeDTO<BienTheSanPham>
     {
         private readonly Context _context;
         public BienTheSvc(Context context)
@@ -26,11 +26,7 @@ namespace shipping.Services.Implement
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var exists = await _context.SanPham.FirstOrDefaultAsync(x => x.IDSanPham == id);
-                if (exists == null)
-                    return false;
-
-                var bt = await _context.BienTheSanPham.FirstOrDefaultAsync(x => x.IDBienTheSanPham == exists.IDBienTheSanPham);
+                var bt = await _context.BienTheSanPham.FirstOrDefaultAsync(x => x.IDBienTheSanPham == id);
                 if (bt == null)
                     return false;
 
@@ -59,7 +55,6 @@ namespace shipping.Services.Implement
                         }
                     }
                 }
-
                 _context.ChiTietBienTheSanPham.RemoveRange(ctList);
                 _context.BienTheSanPham.Remove(bt);
                 await _context.SaveChangesAsync();
@@ -71,11 +66,11 @@ namespace shipping.Services.Implement
                 await transaction.RollbackAsync();
                 return false;
             }
-        } 
+        }
 
-        public async Task<List<BienTheSanPham>>GetDatas()
+        public async Task<List<BienTheSanPham>> GetDatasById(string id)
         {
-            var res = await _context.BienTheSanPham.ToListAsync();
+            var res = await _context.BienTheSanPham.Where(x => x.IDSanPham == id).ToListAsync();
             if (res == null)
             {
                 return new List<BienTheSanPham>();

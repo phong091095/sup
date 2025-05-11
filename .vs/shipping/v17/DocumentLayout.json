@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\ttphong\\Downloads\\shipping\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\migrations\\20250511174935_creatinit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\migrations\\20250511174935_creatinit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\implement\\bienthesvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\services\\implement\\bienthesvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\implement\\sanphamsvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\services\\implement\\sanphamsvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\interface\\iservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\services\\interface\\iservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\model\\donvivanchuyen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\model\\donvivanchuyen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +43,92 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "20250511174935_creatinit.cs",
+              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Migrations\\20250511174935_creatinit.cs",
+              "RelativeDocumentMoniker": "shipping\\Migrations\\20250511174935_creatinit.cs",
+              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Migrations\\20250511174935_creatinit.cs",
+              "RelativeToolTip": "shipping\\Migrations\\20250511174935_creatinit.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAACMAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T17:49:36.076Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Program.cs",
               "RelativeDocumentMoniker": "shipping\\Program.cs",
               "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Program.cs",
               "RelativeToolTip": "shipping\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAABCAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-11T10:42:39.833Z",
+              "WhenOpened": "2025-05-11T17:45:07.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BienTheSvc.cs",
+              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\BienTheSvc.cs",
+              "RelativeDocumentMoniker": "shipping\\Services\\Implement\\BienTheSvc.cs",
+              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\BienTheSvc.cs",
+              "RelativeToolTip": "shipping\\Services\\Implement\\BienTheSvc.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAwwEYAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T17:38:53.297Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DonViVanChuyen.cs",
+              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\DonViVanChuyen.cs",
+              "RelativeDocumentMoniker": "shipping\\Model\\DonViVanChuyen.cs",
+              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\DonViVanChuyen.cs",
+              "RelativeToolTip": "shipping\\Model\\DonViVanChuyen.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T17:38:37.292Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IServices.cs",
+              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Interface\\IServices.cs",
+              "RelativeDocumentMoniker": "shipping\\Services\\Interface\\IServices.cs",
+              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Interface\\IServices.cs",
+              "RelativeToolTip": "shipping\\Services\\Interface\\IServices.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAywDQAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T17:34:52.561Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SanPhamSvc.cs",
+              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\SanPhamSvc.cs",
+              "RelativeDocumentMoniker": "shipping\\Services\\Implement\\SanPhamSvc.cs",
+              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\SanPhamSvc.cs",
+              "RelativeToolTip": "shipping\\Services\\Implement\\SanPhamSvc.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAoAAABlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T17:32:49.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SanPhamController.cs",
+              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Controllers\\SanPhamController.cs",
+              "RelativeDocumentMoniker": "shipping\\Controllers\\SanPhamController.cs",
+              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Controllers\\SanPhamController.cs",
+              "RelativeToolTip": "shipping\\Controllers\\SanPhamController.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAgwJMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-11T17:32:07.619Z",
               "EditorCaption": ""
             },
             {

@@ -10,5 +10,6 @@ namespace shipping.Model
         public int SoLuong { get; set; } = 0;
         public string? SKU { get; set; }
         public byte[]? HinhAnhBienThe {  get; set; }
+        public string IDSanPham { get; set; } = default!;
     }
 }

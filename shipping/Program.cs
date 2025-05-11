@@ -17,13 +17,13 @@ builder.Services.AddScoped<IShipDTO<ChiTietDonViVanChuyenDTO>,ShipSvc>();
 builder.Services.AddScoped<IPostDTO<DonViVanChuyen>, ShipSvc > ();
 builder.Services.AddScoped<IPostDTO<ChiTietDVVanChuyen>, ShipDetail>();
 builder.Services.AddScoped<IPutData<ChiTietDVVanChuyen>,ShipSvc > ();
-builder.Services.AddScoped<IGetDTO<ProductDetail>,SanPhamSvc>();
-builder.Services.AddScoped<IGetByRQ<ProductDetail>, SanPhamSvc>();
-builder.Services.AddScoped<IPutByID<BienTheSanPham>, SanPhamSvc>();
+
+builder.Services.AddScoped<IAddImage, SanPhamSvc>();
 builder.Services.AddScoped<IPutData<ProductDetail>, SanPhamSvc>();
 builder.Services.AddScoped<IDeleTeDTO<SanPham>, SanPhamSvc>();
+builder.Services.AddScoped<IPutSp<SanPham>, SanPhamSvc>();
 
-builder.Services.AddScoped<IGetDTO<BienTheSanPham>, BienTheSvc>();
+builder.Services.AddScoped<IGetAll<BienTheSanPham>, BienTheSvc>();
 builder.Services.AddScoped<IPostDTO<BienTheSanPham>, BienTheSvc>();
 builder.Services.AddScoped<IDeleTeDTO<BienTheSanPham>, BienTheSvc>();
 

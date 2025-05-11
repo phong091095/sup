@@ -37,9 +37,9 @@ namespace shipping.Services.Implement
             if (ds == null) {
                 return false;
             }
-            ds.TrangThai = ds.TrangThai == TrangThai.HoatDong.ToString()
-                    ? TrangThai.NgungHoatDong.ToString()
-                    : TrangThai.HoatDong.ToString();
+            ds.TrangThai = ds.TrangThai == TrangThaiTong.TrangThai.HoatDong.ToString()
+                    ? TrangThaiTong.TrangThai.NgungHoatDong.ToString()
+                    : TrangThaiTong.TrangThai.HoatDong.ToString();
             await _context.SaveChangesAsync();
             return true;
         }

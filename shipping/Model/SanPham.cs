@@ -8,7 +8,6 @@ namespace shipping.Model
         public string IDSanPham {  get; set; } = default!;
         public int IDDanhMuc { get; set; }
         public int IDPhanLoaiDanhMuc { get; set; }
-        public string IDBienTheSanPham { get; set; } = default!;
         public string IDCuaHang { get; set; }
         public string TenSanPham { get; set; }
         public byte[] HinhAnhChinh { get; set; }

@@ -3,16 +3,17 @@
     public class ProductDetail
     {
         public SanPham SanPham { get; set; }
-        public DanhMuc DanhMuc { get; set; } 
+        public DanhMuc DanhMuc { get; set; }
         public PhanLoaiDanhMuc PhanLoai { get; set; }
-        public BienTheSanPhamDTO BienTheSanPham { get; set; }
-
+        public List<BienTheSanPhamDTO> BienTheSanPham { get; set; } = new();
     }
+
     public class BienTheSanPhamDTO
     {
-        public BienTheSanPham bienthe {  get; set; }
+        public BienTheSanPham bienthe { get; set; }
         public List<GiaTriBienTheSanPhamDto> GiaTriBienTheSanPham { get; set; } = new();
     }
+
     public class GiaTriBienTheSanPhamDto
     {
         public string TenThuocTinh { get; set; }

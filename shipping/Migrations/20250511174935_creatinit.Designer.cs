@@ -12,8 +12,8 @@ using shipping.DBContext;
 namespace shipping.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250510072734_update")]
-    partial class update
+    [Migration("20250511174935_creatinit")]
+    partial class creatinit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

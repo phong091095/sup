@@ -24,7 +24,7 @@ namespace shipping.Services.Interface
     {
         Task<List<Type>> GetDatabyRQ(RequestbodyDTO rqbd);
     }
-    public interface IGetByID<Type>
+    public interface IGetDataByID<Type>
     {
         Task<Type> GetDataByIds(string id);
     }
@@ -35,11 +35,24 @@ namespace shipping.Services.Interface
     
     public interface IPutByID<Type>
     {
-        Task<bool> PutBienTheByID(string id,Type type);
+        Task<bool> PutBienTheByID(Type type);
         Task<bool> PutChiTietBTByID(string id,GiaTriBienTheSanPhamDto type);
     }
     public interface IDeleTeDTO<Type>
     {
         Task<bool> DeleteData(string id);
     }
+    public interface IPutSp<Type>
+    {
+        Task<bool >PutData(Type type);
+    }
+    public interface IAddImage
+    {
+        Task<bool> AddImageByID(string id, byte[] image);
+    }
+    public interface IGetAll<Type>
+    {
+        Task<List<Type>> GetDatasById(string id);
+    }
+
 }

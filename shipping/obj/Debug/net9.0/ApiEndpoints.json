@@ -88,5 +88,185 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "GetAllData",
+    "RelativePath": "store/products",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "UpdateSP",
+    "RelativePath": "store/products",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sp",
+        "Type": "shipping.Model.SanPham",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "DeleteSP",
+    "RelativePath": "store/products/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "AddImage",
+    "RelativePath": "store/products/{id}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "image",
+        "Type": "System.Byte[]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "UpdateReview",
+    "RelativePath": "store/products/{id}/request-review",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "shipping.Model.ProductDetail",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "GetBTSP",
+    "RelativePath": "store/products/{id}/variant",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "GetDataWithBodyRQ",
+    "RelativePath": "store/products/request",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "shipping.Model.RequestbodyDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "UpdateCTVC",
+    "RelativePath": "store/products/shipping",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "shipping.Model.ChiTietDVVanChuyen",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "UpdateChiTietBT",
+    "RelativePath": "store/products/variants",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "shipping.Model.BienTheSanPham",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "CreateBTSP",
+    "RelativePath": "store/products/variants",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "shipping.Model.BienTheSanPham",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "DeleteBTSP",
+    "RelativePath": "store/products/variants/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

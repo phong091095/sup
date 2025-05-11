@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using shipping.Model;
+using shipping.Services.Implement;
 using shipping.Services.Interface;
 
 namespace shipping.Controllers
@@ -12,12 +13,14 @@ namespace shipping.Controllers
         private readonly IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO;
         private readonly IPostDTO<DonViVanChuyen> postDTO;
         private readonly IPostDTO<ChiTietDVVanChuyen> postDetail;
-        public ShippingController(IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO, IPostDTO<DonViVanChuyen> postDTO,IPostDTO<ChiTietDVVanChuyen> postDetail)
+        public ShipSvc svc { get; set; }
+        public ShippingController(ShipSvc svc,IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO, IPostDTO<DonViVanChuyen> postDTO,IPostDTO<ChiTietDVVanChuyen> postDetail)
         {
             this.shipServices = shipServices;
             this.shipDTO = shipDTO;
             this.postDTO = postDTO;
             this.postDetail = postDetail;
+            this.svc = svc;
         }
         [HttpPost]
         public async Task<IActionResult> CreateDVVC(DonViVanChuyen dvvc)
@@ -77,6 +80,7 @@ namespace shipping.Controllers
                 });
             }
         }
+
         [HttpPut]
         public async Task<IActionResult> UpdateDVVC(DonViVanChuyen dvvc)
         {
@@ -141,5 +145,6 @@ namespace shipping.Controllers
             }
             return Ok(res);
         }
+
     }
 }
