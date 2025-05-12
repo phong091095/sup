@@ -46,6 +46,10 @@ namespace shipping.Services.Interface
     {
         Task<bool >PutData(Type type);
     }
+    public interface IPutReview<Type>
+    {
+        Task<bool> PutReview(ProductDetail detail);
+    }
     public interface IAddImage
     {
         Task<bool> AddImageByID(string id, byte[] image);

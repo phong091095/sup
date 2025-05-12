@@ -109,7 +109,7 @@
     "Parameters": [
       {
         "Name": "sp",
-        "Type": "shipping.Model.SanPham",
+        "Type": "shipping.Model.DTO.SanPhamDTO",
         "IsRequired": true
       }
     ],
@@ -193,7 +193,7 @@
     "ContainingType": "shipping.Controllers.SanPhamController",
     "Method": "GetDataWithBodyRQ",
     "RelativePath": "store/products/request",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -215,7 +215,7 @@
     "Parameters": [
       {
         "Name": "data",
-        "Type": "shipping.Model.ChiTietDVVanChuyen",
+        "Type": "shipping.Model.DTO.ChiTietDVVanChuyenDTO",
         "IsRequired": true
       }
     ],
@@ -231,7 +231,7 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "shipping.Model.BienTheSanPham",
+        "Type": "shipping.Model.DTO.BienTheSPDTO",
         "IsRequired": true
       }
     ],
@@ -247,7 +247,7 @@
     "Parameters": [
       {
         "Name": "data",
-        "Type": "shipping.Model.BienTheSanPham",
+        "Type": "shipping.Model.DTO.BienTheSPDTO",
         "IsRequired": true
       }
     ],

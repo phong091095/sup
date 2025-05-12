@@ -2,13 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using shipping.DBContext;
 using shipping.Model;
+using shipping.Model.DTO;
 using shipping.Services.Interface;
 using static shipping.Model.TrangThaiTong;
 
 namespace shipping.Services.Implement
 {
     public class SanPhamSvc : IGetDTO<ProductDetail>,
-        IAddImage,IGetByRQ<ProductDetail>,IDeleTeDTO<SanPham>,IPutData<ProductDetail>,IPutSp<SanPham>
+        IAddImage,IGetByRQ<ProductDetail>,IDeleTeDTO<SanPham>,IPutReview<ProductDetail>, IPutSp<SanPhamDTO>
     {
         private readonly Context _context;
         public SanPhamSvc(Context context)
@@ -37,38 +38,41 @@ namespace shipping.Services.Implement
                 if (exists == null)
                     return false;
 
-                var bt = await _context.BienTheSanPham.FirstOrDefaultAsync();
-                if (bt == null)
-                    return false;
+                var bt = await _context.BienTheSanPham.FirstOrDefaultAsync(x => x.IDSanPham == id);
 
-                var ctList = await _context.ChiTietBienTheSanPham
-                    .Where(x => x.IDBienTheSanPham == bt.IDBienTheSanPham)
-                    .ToListAsync();
-
-                foreach (var item in ctList)
+                List<ChiTietBienTheSanPham> ctList = new();
+                if (bt != null)
                 {
-                    var gt = await _context.GiaTriBTSP.FirstOrDefaultAsync(x => x.ID == item.IDGiaTriBienTheSanPham);
-                    if (gt != null)
+                    ctList = await _context.ChiTietBienTheSanPham
+                        .Where(x => x.IDBienTheSanPham == bt.IDBienTheSanPham)
+                        .ToListAsync();
+
+                    foreach (var item in ctList)
                     {
-                        bool isUsed = await _context.ChiTietBienTheSanPham
-                            .AnyAsync(x => x.IDGiaTriBienTheSanPham == gt.ID && x.IDBienTheSanPham != bt.IDBienTheSanPham);
-                        if (!isUsed)
+                        var gt = await _context.GiaTriBTSP.FirstOrDefaultAsync(x => x.ID == item.IDGiaTriBienTheSanPham);
+                        if (gt != null)
                         {
-                            var tt = await _context.ThuocTinhBTSP.FirstOrDefaultAsync(x => x.ID == gt.IDThuocTinh);
+                            bool isUsed = await _context.ChiTietBienTheSanPham
+                                .AnyAsync(x => x.IDGiaTriBienTheSanPham == gt.ID && x.IDBienTheSanPham != bt.IDBienTheSanPham);
+                            if (!isUsed)
+                            {
+                                var tt = await _context.ThuocTinhBTSP.FirstOrDefaultAsync(x => x.ID == gt.IDThuocTinh);
 
-                            bool isTTUsed = await _context.GiaTriBTSP
-                                .AnyAsync(g => g.IDThuocTinh == gt.IDThuocTinh && g.ID != gt.ID);
+                                bool isTTUsed = await _context.GiaTriBTSP
+                                    .AnyAsync(g => g.IDThuocTinh == gt.IDThuocTinh && g.ID != gt.ID);
 
-                            if (!isTTUsed && tt != null)
-                                _context.ThuocTinhBTSP.Remove(tt);
+                                if (!isTTUsed && tt != null)
+                                    _context.ThuocTinhBTSP.Remove(tt);
 
-                            _context.GiaTriBTSP.Remove(gt);
+                                _context.GiaTriBTSP.Remove(gt);
+                            }
                         }
                     }
+
+                    _context.ChiTietBienTheSanPham.RemoveRange(ctList);
+                    _context.BienTheSanPham.Remove(bt);
                 }
 
-                _context.ChiTietBienTheSanPham.RemoveRange(ctList);
-                _context.BienTheSanPham.Remove(bt);
                 _context.SanPham.Remove(exists);
 
                 await _context.SaveChangesAsync();
@@ -83,7 +87,8 @@ namespace shipping.Services.Implement
         }
 
 
-        public async Task<List<ProductDetail>> GetDatabyRQ(RequestbodyDTO request)
+
+        public async Task<List<ProductDetail>?> GetDatabyRQ(RequestbodyDTO request)
         {
             var sanPhams = await _context.SanPham
                 .Include(sp => sp.DanhMuc)
@@ -91,20 +96,40 @@ namespace shipping.Services.Implement
                     .ThenInclude(bt => bt.ChiTietBienThes)
                         .ThenInclude(ct => ct.GiaTri)
                             .ThenInclude(gt => gt.ThuocTinh)
-                .Where(sp =>
-                    (string.IsNullOrEmpty(request.TenSanPham) || sp.TenSanPham.Contains(request.TenSanPham, StringComparison.OrdinalIgnoreCase)) &&
-                    (string.IsNullOrEmpty(request.Path) || request.Path.Contains(sp.DanhMuc.TenDanhMuc))
-                )
-                .ToListAsync();
+                            .Where(sp =>
+            (string.IsNullOrEmpty(request.TenSanPham) || sp.TenSanPham.ToLower().Contains(request.TenSanPham.ToLower())) &&
+            (string.IsNullOrEmpty(request.Path) || sp.DanhMuc.Path.ToLower().Contains(request.Path.ToLower()))
+        )
+                                    .ToListAsync();
+
+            if (sanPhams == null || !sanPhams.Any())
+                return null;
 
             var products = sanPhams.Select(sp => new ProductDetail
             {
-                SanPham = sp,
+                SanPham = new SanPhamDTO
+                {
+                    IDSanPham = sp.IDSanPham,
+                    IDDanhMuc = sp.IDDanhMuc,
+                    IDCuaHang = sp.IDCuaHang,
+                    TenSanPham = sp.TenSanPham,
+                    HinhAnhChinh = sp.HinhAnhChinh,
+                    MoTa = sp.MoTa,
+                    TrangThai = sp.TrangThai,
+                    NgayTao = sp.NgayTao
+                },
                 DanhMuc = sp.DanhMuc?.TenDanhMuc ?? "",
-
                 BienTheSanPham = sp.BienThes.Select(bt => new BienTheSanPhamDTO
                 {
-                    bienthe = bt,
+                    bienthe = new BienTheSPDTO
+                    {
+                        IDBienTheSanPham = bt.IDBienTheSanPham,
+                        Gia = bt.Gia,
+                        SoLuong = bt.SoLuong,
+                        SKU = bt.SKU,
+                        HinhAnhBienThe = bt.HinhAnhBienThe,
+                        IDSanPham = bt.IDSanPham
+                    },
                     GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
                     {
                         TenGiaTri = ct.GiaTri?.TenGiaTri,
@@ -115,6 +140,7 @@ namespace shipping.Services.Implement
 
             return products;
         }
+
 
         public async Task<List<ProductDetail>> GetDatas()
         {
@@ -128,12 +154,29 @@ namespace shipping.Services.Implement
 
             var products = sanPhams.Select(sp => new ProductDetail
             {
-                SanPham = sp,
+                SanPham = new SanPhamDTO
+                {
+                    IDSanPham = sp.IDSanPham,
+                    IDDanhMuc = sp.IDDanhMuc,
+                    IDCuaHang = sp.IDCuaHang,
+                    TenSanPham = sp.TenSanPham,
+                    HinhAnhChinh = sp.HinhAnhChinh,
+                    MoTa = sp.MoTa,
+                    TrangThai = sp.TrangThai,
+                    NgayTao = sp.NgayTao
+                },
                 DanhMuc = sp.DanhMuc?.TenDanhMuc ?? "",
-
                 BienTheSanPham = sp.BienThes.Select(bt => new BienTheSanPhamDTO
                 {
-                    bienthe = bt,
+                    bienthe = new BienTheSPDTO
+                    {
+                        IDBienTheSanPham = bt.IDBienTheSanPham,
+                        Gia = bt.Gia,
+                        SoLuong = bt.SoLuong,
+                        SKU = bt.SKU,
+                        HinhAnhBienThe = bt.HinhAnhBienThe,
+                        IDSanPham = bt.IDSanPham
+                    },
                     GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
                     {
                         TenGiaTri = ct.GiaTri?.TenGiaTri,
@@ -146,7 +189,7 @@ namespace shipping.Services.Implement
         }
 
 
-        public async Task<bool> PutBienTheByID(BienTheSanPham type)
+        public async Task<bool> PutBienTheByID(BienTheSPDTO type)
         {
             var bt = await _context.BienTheSanPham.FirstOrDefaultAsync(x=>x.IDBienTheSanPham == type.IDBienTheSanPham);
             if (bt == null) {
@@ -160,7 +203,22 @@ namespace shipping.Services.Implement
             return true;
         }
 
-        public async Task<bool> PutData(ProductDetail type)
+        public async Task<bool> PutData(SanPhamDTO type)
+        {
+            var exists = await _context.SanPham.FirstOrDefaultAsync(x=>x.IDSanPham == type.IDSanPham);
+            if (exists == null)
+            {
+                return false;
+            }
+            exists.IDDanhMuc = type.IDDanhMuc;
+            exists.MoTa = type.MoTa;
+            exists.TenSanPham = type.TenSanPham;    
+            exists.HinhAnhChinh = type.HinhAnhChinh;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> PutReview(ProductDetail type)
         {
             var exists = await _context.SanPham.FirstOrDefaultAsync(x => x.IDSanPham == type.SanPham.IDSanPham);
             if (exists == null)
@@ -177,18 +235,20 @@ namespace shipping.Services.Implement
             exists.HinhAnhChinh = type.SanPham.HinhAnhChinh;
             exists.IDDanhMuc = type.SanPham.IDDanhMuc;
             var listdto = type.BienTheSanPham;
-            foreach (var item in listdto) {
+            foreach (var item in listdto)
+            {
                 var bienThe = item.bienthe;
                 var thongtin = item.GiaTriBienTheSanPham;
                 var existsbt = bt.FirstOrDefault(x => x.IDBienTheSanPham == bienThe.IDBienTheSanPham);
-                if (existsbt == null) {
+                if (existsbt == null)
+                {
                     continue;
                 }
                 existsbt.SKU = bienThe.SKU;
                 existsbt.Gia = bienThe.Gia;
                 existsbt.HinhAnhBienThe = bienThe.HinhAnhBienThe;
                 existsbt.SoLuong = bienThe.SoLuong;
-                foreach(var ttitem in thongtin)
+                foreach (var ttitem in thongtin)
                 {
                     var gt = _context.GiaTriBTSP.FirstOrDefault(x => x.TenGiaTri == ttitem.TenGiaTri);
                     if (gt == null) continue;
@@ -203,21 +263,6 @@ namespace shipping.Services.Implement
             {
                 exists.TrangThai = TrangThaiTong.TrangThaiSP.DangHoatDong.ToString();
             }
-            await _context.SaveChangesAsync();
-            return true;
-        }
-
-        public async Task<bool> PutData(SanPham type)
-        {
-            var exists = await _context.SanPham.FirstOrDefaultAsync(x=>x.IDSanPham == type.IDSanPham);
-            if (exists == null)
-            {
-                return false;
-            }
-            exists.IDDanhMuc = type.IDDanhMuc;
-            exists.MoTa = type.MoTa;
-            exists.TenSanPham = type.TenSanPham;    
-            exists.HinhAnhChinh = type.HinhAnhChinh;
             await _context.SaveChangesAsync();
             return true;
         }

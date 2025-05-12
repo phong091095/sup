@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using shipping.DBContext;
 using shipping.Model;
+using shipping.Model.DTO;
 using shipping.Services.Implement;
 using shipping.Services.Interface;
 
@@ -15,17 +16,24 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IShipServices<DonViVanChuyen>,ShipSvc>();
 builder.Services.AddScoped<IShipDTO<ChiTietDonViVanChuyenDTO>,ShipSvc>();
 builder.Services.AddScoped<IPostDTO<DonViVanChuyen>, ShipSvc > ();
+builder.Services.AddScoped<IPutData<ChiTietDVVanChuyenDTO>, ShipSvc>();
 builder.Services.AddScoped<IPostDTO<ChiTietDVVanChuyen>, ShipDetail>();
-builder.Services.AddScoped<IPutData<ChiTietDVVanChuyen>,ShipSvc > ();
-
+//
+builder.Services.AddScoped<IGetByRQ<ProductDetail>, SanPhamSvc>();
+builder.Services.AddScoped<IPutReview<ProductDetail>, SanPhamSvc>();
+builder.Services.AddScoped<IGetDTO<ProductDetail>, SanPhamSvc>();
 builder.Services.AddScoped<IAddImage, SanPhamSvc>();
-builder.Services.AddScoped<IPutData<ProductDetail>, SanPhamSvc>();
 builder.Services.AddScoped<IDeleTeDTO<SanPham>, SanPhamSvc>();
-builder.Services.AddScoped<IPutSp<SanPham>, SanPhamSvc>();
-
+builder.Services.AddScoped<IPutSp<SanPhamDTO>, SanPhamSvc>();
+//
 builder.Services.AddScoped<IGetAll<BienTheSanPham>, BienTheSvc>();
-builder.Services.AddScoped<IPostDTO<BienTheSanPham>, BienTheSvc>();
+builder.Services.AddScoped<IPostDTO<BienTheSPDTO>, BienTheSvc>();
 builder.Services.AddScoped<IDeleTeDTO<BienTheSanPham>, BienTheSvc>();
+//
+builder.Services.AddScoped<SanPhamSvc>();
+builder.Services.AddScoped<BienTheSvc>();
+builder.Services.AddScoped<ShipDetail>();
+builder.Services.AddScoped<ShipSvc>();
 
 var connectionString = builder.Configuration.GetConnectionString("Mydbtest");
 builder.Services.AddDbContext<Context>(option=>option.UseSqlServer(connectionString));

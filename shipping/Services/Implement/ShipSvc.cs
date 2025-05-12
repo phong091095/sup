@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using shipping.DBContext;
 using shipping.Model;
+using shipping.Model.DTO;
 using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class ShipSvc : IShipServices<DonViVanChuyen>,IPostDTO<DonViVanChuyen>,IShipDTO<ChiTietDonViVanChuyenDTO>,IPutData<ChiTietDVVanChuyen>
+    public class ShipSvc : IShipServices<DonViVanChuyen>,IPostDTO<DonViVanChuyen>,IShipDTO<ChiTietDonViVanChuyenDTO>,IPutData<ChiTietDVVanChuyenDTO>
     {
         private readonly Context _context;
         public ShipSvc(Context context) {
@@ -77,7 +78,7 @@ namespace shipping.Services.Implement
             return type;
         }
 
-        public async Task<bool> PutData(ChiTietDVVanChuyen type)
+        public async Task<bool> PutData(ChiTietDVVanChuyenDTO type)
         {
             var exists = await _context.ChiTietDVVanChuyen.FirstOrDefaultAsync(x=>x.IDDonViVanChuyen == type.IDDonViVanChuyen);
             if (exists == null)

@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using shipping.DBContext;
 using shipping.Model;
+using shipping.Model.DTO;
 using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class BienTheSvc : IGetAll<BienTheSanPham>, IPostDTO<BienTheSanPham>, IDeleTeDTO<BienTheSanPham>
+    public class BienTheSvc : IGetAll<BienTheSanPham>, IPostDTO<BienTheSPDTO>, IDeleTeDTO<BienTheSanPham>
     {
         private readonly Context _context;
         public BienTheSvc(Context context)
@@ -13,34 +14,41 @@ namespace shipping.Services.Implement
             _context = context;
         }
 
-        public async Task<BienTheSanPham> CreateData(BienTheSanPham type)
+        public async Task<BienTheSPDTO> CreateData(BienTheSPDTO type)
         {
             var count = _context.BienTheSanPham.Count() + 1;
-            type.IDBienTheSanPham = "BTSP" + count;
-            await _context.BienTheSanPham.AddAsync(type);
+            var item = new BienTheSanPham
+            {
+                IDBienTheSanPham = "BTSP" + count,
+                IDSanPham = type.IDSanPham,
+                Gia = type.Gia,
+                SKU = type.SKU,
+                SoLuong = type.SoLuong,
+                HinhAnhBienThe = type.HinhAnhBienThe
+            };
+            await _context.BienTheSanPham.AddAsync(item);
             return type;
         }
-
         public async Task<bool> DeleteData(string id)
         {
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var bt = await _context.BienTheSanPham.FirstOrDefaultAsync(x => x.IDBienTheSanPham == id);
+                var bt = await _context.BienTheSanPham
+                    .Include(x => x.ChiTietBienThes)
+                    .FirstOrDefaultAsync(x => x.IDBienTheSanPham == id);
+
                 if (bt == null)
                     return false;
 
-                var ctList = await _context.ChiTietBienTheSanPham
-                    .Where(x => x.IDBienTheSanPham == bt.IDBienTheSanPham)
-                    .ToListAsync();
-
-                foreach (var item in ctList)
+                foreach (var item in bt.ChiTietBienThes)
                 {
                     var gt = await _context.GiaTriBTSP.FirstOrDefaultAsync(x => x.ID == item.IDGiaTriBienTheSanPham);
                     if (gt != null)
                     {
                         bool isUsed = await _context.ChiTietBienTheSanPham
                             .AnyAsync(x => x.IDGiaTriBienTheSanPham == gt.ID && x.IDBienTheSanPham != bt.IDBienTheSanPham);
+
                         if (!isUsed)
                         {
                             var tt = await _context.ThuocTinhBTSP.FirstOrDefaultAsync(x => x.ID == gt.IDThuocTinh);
@@ -55,8 +63,10 @@ namespace shipping.Services.Implement
                         }
                     }
                 }
-                _context.ChiTietBienTheSanPham.RemoveRange(ctList);
+
+                _context.ChiTietBienTheSanPham.RemoveRange(bt.ChiTietBienThes);
                 _context.BienTheSanPham.Remove(bt);
+
                 await _context.SaveChangesAsync();
                 await transaction.CommitAsync();
                 return true;
@@ -68,6 +78,7 @@ namespace shipping.Services.Implement
             }
         }
 
+
         public async Task<List<BienTheSanPham>> GetDatasById(string id)
         {
             var res = await _context.BienTheSanPham.Where(x => x.IDSanPham == id).ToListAsync();
@@ -77,5 +88,7 @@ namespace shipping.Services.Implement
             }
             return res;
         }
+
+        
     }
 }

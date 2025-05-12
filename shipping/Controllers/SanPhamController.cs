@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using shipping.Model;
+using shipping.Model.DTO;
 using shipping.Services.Implement;
 using shipping.Services.Interface;
 
@@ -20,7 +21,7 @@ namespace shipping.Controllers
             this.bienTheSvc = bienTheSvc;
         }
         //1
-        [HttpGet("request")]
+        [HttpPost("request")]
         public async Task<IActionResult> GetDataWithBodyRQ([FromBody] RequestbodyDTO request)
         {
             if (request == null)
@@ -46,7 +47,7 @@ namespace shipping.Controllers
         }
         //2
         [HttpPut()]
-        public async Task<IActionResult> UpdateSP(SanPham sp)
+        public async Task<IActionResult> UpdateSP(SanPhamDTO sp)
         {
             if (sp == null)
             {
@@ -64,7 +65,7 @@ namespace shipping.Controllers
         }
         //3
         [HttpPut("variants")]
-        public async Task<IActionResult> UpdateChiTietBT([FromBody] BienTheSanPham dto)
+        public async Task<IActionResult> UpdateChiTietBT([FromBody] BienTheSPDTO dto)
         {
             if (dto == null)
             {
@@ -79,7 +80,7 @@ namespace shipping.Controllers
         }
         //4.
         [HttpPut("shipping")]
-        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyen data)
+        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyenDTO data)
         {
             if (data == null)
             {
@@ -96,7 +97,7 @@ namespace shipping.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSP([FromRoute] string id)
         {
-            if (!string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Mã sản phẩm trống");
             }
@@ -111,7 +112,7 @@ namespace shipping.Controllers
         [HttpPost("{id}")]
         public async Task<IActionResult> AddImage([FromRoute] string id, [FromBody] byte[] image)
         {
-            if (!string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Mã sản phẩm trống");
             }
@@ -131,7 +132,7 @@ namespace shipping.Controllers
         [HttpGet("{id}/variant")]
         public async Task<IActionResult> GetBTSP([FromRoute] string id)
         {
-            if (!string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Dữ liệu không đầy đủ");
             }
@@ -144,7 +145,7 @@ namespace shipping.Controllers
         }
         //8.
         [HttpPost("variants")]
-        public async Task<IActionResult> CreateBTSP([FromBody]BienTheSanPham data)
+        public async Task<IActionResult> CreateBTSP([FromBody]BienTheSPDTO data)
         {
             if (data == null)
             {
@@ -161,7 +162,7 @@ namespace shipping.Controllers
         [HttpDelete("variants/{id}")]
         public async Task<IActionResult> DeleteBTSP([FromRoute] string id)
         {
-            if (!string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Dữ liệu không đầy đủ");
             }
@@ -180,7 +181,7 @@ namespace shipping.Controllers
             {
                 return BadRequest("Dữ liệu không đầy đủ");
             }
-            var res = await spsvc.PutData(data);
+            var res = await spsvc.PutReview(data);
             if (!res)
             {
                 return BadRequest(new { thongBao = "Không thể gửi kiểm duyệt. Sản phẩm không tồn tại hoặc không ở trạng thái vi phạm" });

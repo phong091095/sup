@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace shipping.Model
+namespace shipping.Model.DTO
 {
     public class ChiTietDonViVanChuyenDTO
     {
