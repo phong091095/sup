@@ -118,7 +118,7 @@ namespace shipping.Services.Implement
                         Gia = bt.Gia,
                         SoLuong = bt.SoLuong,
                         SKU = bt.SKU,
-                        HinhAnhBienThe = bt.images.HinhAnh,
+                        HinhAnhBienThe = bt.HinhAnh,
                         IDSanPham = bt.IDSanPham
                     },
                     GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
@@ -166,7 +166,7 @@ namespace shipping.Services.Implement
                         Gia = bt.Gia,
                         SoLuong = bt.SoLuong,
                         SKU = bt.SKU,
-                        HinhAnhBienThe = bt.images.HinhAnh,
+                        HinhAnhBienThe = bt.HinhAnh,
                         IDSanPham = bt.IDSanPham
                     },
                     GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
@@ -184,11 +184,10 @@ namespace shipping.Services.Implement
         public async Task<bool> PutBienTheByID(BienTheSPDTO type)
         {
             var bt = await _context.BienTheSanPham.FirstOrDefaultAsync(x=>x.IDBienTheSanPham == type.IDBienTheSanPham);
-            var image = await _context.Images.FirstOrDefaultAsync(x => x.Id == bt.IDHinhAnh);
             if (bt == null) {
                 return false;
             }
-            image.HinhAnh = type.HinhAnhBienThe;
+            bt.HinhAnh = type.HinhAnhBienThe;
             bt.Gia = type.Gia;
             bt.SKU = type.SKU;
             bt.SoLuong = type.SoLuong;

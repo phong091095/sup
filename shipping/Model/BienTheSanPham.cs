@@ -12,13 +12,12 @@ namespace shipping.Model
         public decimal Gia { get; set; } = 0;
         public int SoLuong { get; set; } = 0;
         public string? SKU { get; set; }
-        public int IDHinhAnh { get; set; } = 0;
+        public byte[] HinhAnh { get; set; } = default!;
         public string IDSanPham { get; set; } = default!;
         [ForeignKey("IDSanPham")]
         public SanPham SanPham { get; set; } = default!;
         public ICollection<ChiTietBienTheSanPham> ChiTietBienThes { get; set; } = new List<ChiTietBienTheSanPham>();
-        [ForeignKey("IDHinhAnh")]
-        public Images images { get; set; } = default!;
+        
 
     }
 }

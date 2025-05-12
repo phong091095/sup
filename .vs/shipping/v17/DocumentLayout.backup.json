@@ -7,36 +7,28 @@
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\services\\implement\\sanphamsvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\model\\dto\\bienthesanphamdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\model\\dto\\bienthesanphamdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\implement\\bienthesvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\services\\implement\\bienthesvc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\model\\productdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\model\\productdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\model\\dto\\sanphamdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\model\\dto\\sanphamdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\model\\bienthesanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\model\\bienthesanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\dbcontext\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\dbcontext\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\model\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\model\\images.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\dbcontext\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|solutionrelative:shipping\\dbcontext\\context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{27D50849-C682-49B5-B3D2-3E6115E25C20}|shipping\\shipping.csproj|c:\\users\\ttphong\\downloads\\shipping\\shipping\\services\\interface\\iservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,15 +42,28 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BienTheSanPhamDTO.cs",
+              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\DTO\\BienTheSanPhamDTO.cs",
+              "RelativeDocumentMoniker": "shipping\\Model\\DTO\\BienTheSanPhamDTO.cs",
+              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\DTO\\BienTheSanPhamDTO.cs",
+              "RelativeToolTip": "shipping\\Model\\DTO\\BienTheSanPhamDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T14:48:49.383Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Program.cs",
               "RelativeDocumentMoniker": "shipping\\Program.cs",
@@ -66,44 +71,7 @@
               "RelativeToolTip": "shipping\\Program.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAACUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T09:50:28.584Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BienTheSvc.cs",
-              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\BienTheSvc.cs",
-              "RelativeDocumentMoniker": "shipping\\Services\\Implement\\BienTheSvc.cs",
-              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\BienTheSvc.cs",
-              "RelativeToolTip": "shipping\\Services\\Implement\\BienTheSvc.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAwAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T09:45:11.893Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SanPhamDTO.cs",
-              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\DTO\\SanPhamDTO.cs",
-              "RelativeDocumentMoniker": "shipping\\Model\\DTO\\SanPhamDTO.cs",
-              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\DTO\\SanPhamDTO.cs",
-              "RelativeToolTip": "shipping\\Model\\DTO\\SanPhamDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T09:43:22.813Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ProductDetail.cs",
-              "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\ProductDetail.cs",
-              "RelativeDocumentMoniker": "shipping\\Model\\ProductDetail.cs",
-              "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\ProductDetail.cs",
-              "RelativeToolTip": "shipping\\Model\\ProductDetail.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T09:29:54.315Z"
+              "WhenOpened": "2025-05-12T09:50:28.584Z"
             },
             {
               "$type": "Document",
@@ -113,39 +81,40 @@
               "RelativeDocumentMoniker": "shipping\\Services\\Implement\\SanPhamSvc.cs",
               "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Implement\\SanPhamSvc.cs",
               "RelativeToolTip": "shipping\\Services\\Implement\\SanPhamSvc.cs",
-              "ViewState": "AgIAAFcAAAAAAAAAAAAcwF4AAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAL8AAAAAAAAAAAAgwLwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T09:28:19.141Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "BienTheSanPham.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\BienTheSanPham.cs",
               "RelativeDocumentMoniker": "shipping\\Model\\BienTheSanPham.cs",
               "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\BienTheSanPham.cs",
               "RelativeToolTip": "shipping\\Model\\BienTheSanPham.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T09:24:42.661Z"
+              "WhenOpened": "2025-05-12T09:24:42.661Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SanPhamController.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Controllers\\SanPhamController.cs",
               "RelativeDocumentMoniker": "shipping\\Controllers\\SanPhamController.cs",
               "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Controllers\\SanPhamController.cs",
               "RelativeToolTip": "shipping\\Controllers\\SanPhamController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wCAAAAAqAAAAAAAAAA==",
+              "ViewState": "AgIAABAAAAAAAAAAAAA1wCAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T09:13:38.33Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Context.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\DBContext\\Context.cs",
               "RelativeDocumentMoniker": "shipping\\DBContext\\Context.cs",
@@ -157,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 4,
               "Title": "Images.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Model\\Images.cs",
               "RelativeDocumentMoniker": "shipping\\Model\\Images.cs",
@@ -165,11 +134,12 @@
               "RelativeToolTip": "shipping\\Model\\Images.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T08:53:16.488Z"
+              "WhenOpened": "2025-05-12T08:53:16.488Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 7,
               "Title": "IServices.cs",
               "DocumentMoniker": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\Services\\Interface\\IServices.cs",
               "RelativeDocumentMoniker": "shipping\\Services\\Interface\\IServices.cs",
