@@ -188,5 +188,24 @@ namespace shipping.Controllers
             }
             return Ok(new { thongBao = "Sản phẩm đã được cập nhật và chuyển sang trạng thái 'Đang hoạt động'." });
         }
+        //11.
+        [HttpPut("variants/{id}")]
+        public async Task<IActionResult> UpdateGTBT([FromBody] GiaTriBienTheSanPhamDto data, int id)
+        {
+            if(id == 0)
+            {
+                return BadRequest("Mã giá trị không tồn tại");
+            }
+            if(data == null)
+            {
+                return BadRequest("Thông tin không đầy đủ");
+            }
+            var res = await bienTheSvc.PutGT(data,id);
+            if (!res)
+            {
+                return BadRequest("Vui lòng kiểm tra lại mã giá trị");
+            }
+            return Ok("Cập nhật thành công");
+        }
     }
 }

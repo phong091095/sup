@@ -29,6 +29,7 @@ builder.Services.AddScoped<IPutSp<SanPhamDTO>, SanPhamSvc>();
 builder.Services.AddScoped<IGetAll<BienTheSanPham>, BienTheSvc>();
 builder.Services.AddScoped<IPostDTO<BienTheSPDTO>, BienTheSvc>();
 builder.Services.AddScoped<IDeleTeDTO<BienTheSanPham>, BienTheSvc>();
+builder.Services.AddScoped<IPutGT,BienTheSvc>();
 //
 builder.Services.AddScoped<SanPhamSvc>();
 builder.Services.AddScoped<BienTheSvc>();

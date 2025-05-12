@@ -6,7 +6,7 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class BienTheSvc : IGetAll<BienTheSanPham>, IPostDTO<BienTheSPDTO>, IDeleTeDTO<BienTheSanPham>
+    public class BienTheSvc : IGetAll<BienTheSanPham>, IPostDTO<BienTheSPDTO>, IDeleTeDTO<BienTheSanPham>, IPutGT
     {
         private readonly Context _context;
         public BienTheSvc(Context context)
@@ -89,6 +89,22 @@ namespace shipping.Services.Implement
             return res;
         }
 
-        
+        public async Task<bool> PutGT(GiaTriBienTheSanPhamDto dto, int id)
+        {
+            var gt = await _context.GiaTriBTSP.FirstOrDefaultAsync(x => x.ID == id);
+            if ( gt == null)
+            {
+                return false;
+            }
+            var tt = await _context.ThuocTinhBTSP.FirstOrDefaultAsync(x => x.ID == gt.IDThuocTinh);
+            if(tt == null)
+            {
+                return false;
+            }
+            gt.TenGiaTri = dto.TenGiaTri;
+            tt.TenThuocTinh = dto.TenThuocTinh;
+            await _context.SaveChangesAsync();
+            return true;
+        }
     }
 }

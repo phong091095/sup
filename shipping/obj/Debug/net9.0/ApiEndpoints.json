@@ -268,5 +268,26 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "UpdateGTBT",
+    "RelativePath": "store/products/variants/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "shipping.Model.GiaTriBienTheSanPhamDto",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
