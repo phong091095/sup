@@ -79,14 +79,14 @@ namespace shipping.Controllers
             return Ok("Cập nhật thành công");
         }
         //4.
-        [HttpPut("shipping")]
-        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyenDTO data)
+        [HttpPut("shipping/{id}")]
+        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyenDTO data, Guid id)
         {
             if (data == null)
             {
                 return BadRequest(new { thongBao = "Thông tin chi tiết đơn vị vận chuyển không đủ" });
             }
-            var res = await shipsvc.PutData(data);
+            var res = await shipsvc.PutShipping(data, id);
             if (!res)
             {
                 return BadRequest(new { thongBao = "Không tìm thấy mã đỡ vị vận chuyển" });

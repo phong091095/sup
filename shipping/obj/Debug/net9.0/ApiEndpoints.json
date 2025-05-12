@@ -208,7 +208,7 @@
   {
     "ContainingType": "shipping.Controllers.SanPhamController",
     "Method": "UpdateCTVC",
-    "RelativePath": "store/products/shipping",
+    "RelativePath": "store/products/shipping/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -216,6 +216,11 @@
       {
         "Name": "data",
         "Type": "shipping.Model.DTO.ChiTietDVVanChuyenDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],

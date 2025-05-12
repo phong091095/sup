@@ -1,4 +1,5 @@
 ﻿using shipping.Model;
+using shipping.Model.DTO;
 
 namespace shipping.Services.Interface
 {
@@ -57,6 +58,10 @@ namespace shipping.Services.Interface
     public interface IPutGT
     {
         Task<bool> PutGT(GiaTriBienTheSanPhamDto dto, int id);
+    }
+    public interface IPutShip
+    {
+        Task<bool> PutShipping(ChiTietDVVanChuyenDTO dto, Guid id);
     }
     //DELETEDATA
     public interface IDeleTeDTO<Type>

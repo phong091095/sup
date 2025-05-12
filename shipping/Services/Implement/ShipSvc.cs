@@ -6,7 +6,7 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class ShipSvc : IShipServices<DonViVanChuyen>,IPostDTO<DonViVanChuyen>,IShipDTO<ChiTietDonViVanChuyenDTO>,IPutData<ChiTietDVVanChuyenDTO>
+    public class ShipSvc : IShipServices<DonViVanChuyen>,IPostDTO<DonViVanChuyen>,IShipDTO<ChiTietDonViVanChuyenDTO>, IPutShip
     {
         private readonly Context _context;
         public ShipSvc(Context context) {
@@ -78,9 +78,10 @@ namespace shipping.Services.Implement
             return type;
         }
 
-        public async Task<bool> PutData(ChiTietDVVanChuyenDTO type)
+
+        public async Task<bool> PutShipping(ChiTietDVVanChuyenDTO type, Guid id)
         {
-            var exists = await _context.ChiTietDVVanChuyen.FirstOrDefaultAsync(x=>x.IDDonViVanChuyen == type.IDDonViVanChuyen);
+            var exists = await _context.ChiTietDVVanChuyen.FirstOrDefaultAsync(x => x.ID == id);
             if (exists == null)
             {
                 return false;
