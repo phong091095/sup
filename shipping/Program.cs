@@ -27,8 +27,9 @@ builder.Services.AddScoped<IGetAll<BienTheSanPham>, BienTheSvc>();
 builder.Services.AddScoped<IPostDTO<BienTheSanPham>, BienTheSvc>();
 builder.Services.AddScoped<IDeleTeDTO<BienTheSanPham>, BienTheSvc>();
 
-var connectionString = builder.Configuration.GetConnectionString("Mydb");
+var connectionString = builder.Configuration.GetConnectionString("Mydbtest");
 builder.Services.AddDbContext<Context>(option=>option.UseSqlServer(connectionString));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -3,8 +3,7 @@
     public class ProductDetail
     {
         public SanPham SanPham { get; set; }
-        public DanhMuc DanhMuc { get; set; }
-        public PhanLoaiDanhMuc PhanLoai { get; set; }
+        public string DanhMuc { get; set; }
         public List<BienTheSanPhamDTO> BienTheSanPham { get; set; } = new();
     }
 
@@ -22,7 +21,6 @@
     public class RequestbodyDTO
     {
         public string? TenSanPham { get; set;}
-        public List<string>? TenDanhMuc {  get; set; }
-        public List<string>? TenPhanLoai { get; set; }
+        public string? Path { get; set;}
     }
 }

@@ -83,109 +83,68 @@ namespace shipping.Services.Implement
         }
 
 
-        public Task<List<ProductDetail>> GetDatabyRQ(RequestbodyDTO request)
+        public async Task<List<ProductDetail>> GetDatabyRQ(RequestbodyDTO request)
         {
-            var sanPhams = _context.SanPham.ToList();
-            var danhMucs = _context.DanhMuc.ToList();
-            var phanLoais = _context.PhanLoaiDanhMuc.ToList();
-            var bienThes = _context.BienTheSanPham.ToList();
-            var chiTietBienThes = _context.ChiTietBienTheSanPham.ToList();
-            var thuocTinhs = _context.ThuocTinhBTSP.ToList();
-            var giaTris = _context.GiaTriBTSP.ToList();
-
-            var filteredSanPhams = sanPhams
+            var sanPhams = await _context.SanPham
+                .Include(sp => sp.DanhMuc)
+                .Include(sp => sp.BienThes)
+                    .ThenInclude(bt => bt.ChiTietBienThes)
+                        .ThenInclude(ct => ct.GiaTri)
+                            .ThenInclude(gt => gt.ThuocTinh)
                 .Where(sp =>
                     (string.IsNullOrEmpty(request.TenSanPham) || sp.TenSanPham.Contains(request.TenSanPham, StringComparison.OrdinalIgnoreCase)) &&
-                    (request.TenDanhMuc == null || request.TenDanhMuc.Count == 0 || request.TenDanhMuc.Contains(
-                        danhMucs.FirstOrDefault(dm => dm.IDDanhMuc == sp.IDDanhMuc)?.TenDanhMuc ?? string.Empty)) &&
-                    (request.TenPhanLoai == null || request.TenPhanLoai.Count == 0 || request.TenPhanLoai.Contains(
-                        phanLoais.FirstOrDefault(pl => pl.Id == sp.IDPhanLoaiDanhMuc)?.Name ?? string.Empty))
-                ).ToList();
+                    (string.IsNullOrEmpty(request.Path) || request.Path.Contains(sp.DanhMuc.TenDanhMuc))
+                )
+                .ToListAsync();
 
-            var products = new List<ProductDetail>();
-
-            foreach (var sp in filteredSanPhams)
+            var products = sanPhams.Select(sp => new ProductDetail
             {
-                var bienTheList = bienThes.Where(bt => bt.IDSanPham == sp.IDSanPham).ToList();
+                SanPham = sp,
+                DanhMuc = sp.DanhMuc?.TenDanhMuc ?? "",
 
-                var product = new ProductDetail
+                BienTheSanPham = sp.BienThes.Select(bt => new BienTheSanPhamDTO
                 {
-                    SanPham = sp,
-                    DanhMuc = danhMucs.FirstOrDefault(d => d.IDDanhMuc == sp.IDDanhMuc),
-                    PhanLoai = phanLoais.FirstOrDefault(p => p.Id == sp.IDPhanLoaiDanhMuc),
-                    BienTheSanPham = bienTheList.Select(bienThe => new BienTheSanPhamDTO
+                    bienthe = bt,
+                    GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
                     {
-                        bienthe = bienThe,
-                        GiaTriBienTheSanPham = chiTietBienThes
-                            .Where(ct => ct.IDBienTheSanPham == bienThe.IDBienTheSanPham)
-                            .Select(ct =>
-                            {
-                                var giaTri = giaTris.FirstOrDefault(g => g.ID == ct.IDGiaTriBienTheSanPham);
-                                var thuocTinh = thuocTinhs.FirstOrDefault(t => t.ID == giaTri?.IDThuocTinh);
-
-                                return new GiaTriBienTheSanPhamDto
-                                {
-                                    TenGiaTri = giaTri?.TenGiaTri,
-                                    TenThuocTinh = thuocTinh?.TenThuocTinh
-                                };
-                            }).ToList()
+                        TenGiaTri = ct.GiaTri?.TenGiaTri,
+                        TenThuocTinh = ct.GiaTri?.ThuocTinh?.TenThuocTinh
                     }).ToList()
-                };
+                }).ToList()
+            }).ToList();
 
-                products.Add(product);
-            }
-
-
-            return Task.FromResult(products);
+            return products;
         }
 
-
-
-        public Task<List<ProductDetail>> GetDatas()
+        public async Task<List<ProductDetail>> GetDatas()
         {
-            var sanPhams = _context.SanPham.ToList();
-            var danhMucs = _context.DanhMuc.ToList();
-            var phanLoais = _context.PhanLoaiDanhMuc.ToList();
-            var bienThes = _context.BienTheSanPham.ToList();
-            var chiTietBienThes = _context.ChiTietBienTheSanPham.ToList();
-            var thuocTinhs = _context.ThuocTinhBTSP.ToList();
-            var giaTris = _context.GiaTriBTSP.ToList();
+            var sanPhams = await _context.SanPham
+                .Include(sp => sp.BienThes)
+                    .ThenInclude(bt => bt.ChiTietBienThes)
+                        .ThenInclude(ct => ct.GiaTri)
+                            .ThenInclude(gt => gt.ThuocTinh)
+                .Include(sp => sp.DanhMuc)
+                .ToListAsync();
 
-            var products = new List<ProductDetail>();
-
-            foreach (var sp in sanPhams)
+            var products = sanPhams.Select(sp => new ProductDetail
             {
-                var bienTheList = bienThes.Where(bt => bt.IDSanPham == sp.IDSanPham).ToList();
+                SanPham = sp,
+                DanhMuc = sp.DanhMuc?.TenDanhMuc ?? "",
 
-                var product = new ProductDetail
+                BienTheSanPham = sp.BienThes.Select(bt => new BienTheSanPhamDTO
                 {
-                    SanPham = sp,
-                    DanhMuc = danhMucs.FirstOrDefault(d => d.IDDanhMuc == sp.IDDanhMuc),
-                    PhanLoai = phanLoais.FirstOrDefault(p => p.Id == sp.IDPhanLoaiDanhMuc),
-                    BienTheSanPham = bienTheList.Select(bienThe => new BienTheSanPhamDTO
+                    bienthe = bt,
+                    GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
                     {
-                        bienthe = bienThe,
-                        GiaTriBienTheSanPham = chiTietBienThes
-                            .Where(ct => ct.IDBienTheSanPham == bienThe.IDBienTheSanPham)
-                            .Select(ct =>
-                            {
-                                var giaTri = giaTris.FirstOrDefault(g => g.ID == ct.IDGiaTriBienTheSanPham);
-                                var thuocTinh = thuocTinhs.FirstOrDefault(t => t.ID == giaTri?.IDThuocTinh);
-
-                                return new GiaTriBienTheSanPhamDto
-                                {
-                                    TenGiaTri = giaTri?.TenGiaTri,
-                                    TenThuocTinh = thuocTinh?.TenThuocTinh
-                                };
-                            }).ToList()
+                        TenGiaTri = ct.GiaTri?.TenGiaTri,
+                        TenThuocTinh = ct.GiaTri?.ThuocTinh?.TenThuocTinh
                     }).ToList()
-                };
+                }).ToList()
+            }).ToList();
 
-                products.Add(product);
-            }
-
-            return Task.FromResult(products);
+            return products;
         }
+
 
         public async Task<bool> PutBienTheByID(BienTheSanPham type)
         {

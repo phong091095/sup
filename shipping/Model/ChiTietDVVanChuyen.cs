@@ -13,6 +13,9 @@ namespace shipping.Model
         [Required]
         public string IDDonViVanChuyen { get; set; } = default!;
 
+        [ForeignKey("IDDonViVanChuyen")]
+        public DonViVanChuyen DonViVanChuyen { get; set; } = default!;
+
         [Range(0, int.MaxValue, ErrorMessage = "Giá trị phí vân chuyển phải là một số dương")]
         public int PhiVanChuyen { get; set; }
 

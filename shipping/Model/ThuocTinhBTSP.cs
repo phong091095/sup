@@ -7,5 +7,6 @@ namespace shipping.Model
         [Key]
         public int ID { get; set; }
         public string TenThuocTinh { get; set; } = default!;
+        public ICollection<GiaTriBTSP> GiaTris { get; set; } = new List<GiaTriBTSP>();
     }
 }

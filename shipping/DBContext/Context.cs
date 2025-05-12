@@ -10,7 +10,6 @@ namespace shipping.DBContext
         public DbSet<ChiTietDVVanChuyen> ChiTietDVVanChuyen { get; set; }
         public DbSet<DonViVanChuyen> DonViVanChuyen { get;set; }
         public DbSet<DanhMuc> DanhMuc { get; set; }
-        public DbSet<PhanLoaiDanhMuc> PhanLoaiDanhMuc { get; set; }
         public DbSet<SanPham> SanPham { get; set; }
         public DbSet<BienTheSanPham> BienTheSanPham { get; set; }
         public DbSet<ChiTietBienTheSanPham> ChiTietBienTheSanPham { get; set; }

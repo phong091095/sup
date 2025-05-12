@@ -12,8 +12,8 @@ using shipping.DBContext;
 namespace shipping.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250511174935_creatinit")]
-    partial class creatinit
+    [Migration("20250512023008_createinit")]
+    partial class createinit
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,7 @@ namespace shipping.Migrations
 
                     b.Property<string>("IDSanPham")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("SKU")
                         .HasColumnType("nvarchar(max)");
@@ -47,6 +47,8 @@ namespace shipping.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IDBienTheSanPham");
+
+                    b.HasIndex("IDSanPham");
 
                     b.ToTable("BienTheSanPham");
                 });
@@ -61,7 +63,7 @@ namespace shipping.Migrations
 
                     b.Property<string>("IDBienTheSanPham")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("IDGiaTriBienTheSanPham")
                         .HasColumnType("int");
@@ -71,6 +73,10 @@ namespace shipping.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IDChiTietBTSanPham");
+
+                    b.HasIndex("IDBienTheSanPham");
+
+                    b.HasIndex("IDGiaTriBienTheSanPham");
 
                     b.ToTable("ChiTietBienTheSanPham");
                 });
@@ -87,7 +93,7 @@ namespace shipping.Migrations
 
                     b.Property<string>("IDDonViVanChuyen")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("NgayCapNhat")
                         .HasColumnType("datetime2");
@@ -101,6 +107,8 @@ namespace shipping.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("IDDonViVanChuyen");
+
                     b.ToTable("ChiTietDVVanChuyen");
                 });
 
@@ -112,10 +120,17 @@ namespace shipping.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDDanhMuc"));
 
+                    b.Property<int>("CapDanhMuc")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsLeaf")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("TenDanhMuc")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TrangThai")
@@ -170,26 +185,9 @@ namespace shipping.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("IDThuocTinh");
+
                     b.ToTable("GiaTriBTSP");
-                });
-
-            modelBuilder.Entity("shipping.Model.PhanLoaiDanhMuc", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("IDDanhMucParent")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PhanLoaiDanhMuc");
                 });
 
             modelBuilder.Entity("shipping.Model.SanPham", b =>
@@ -208,9 +206,6 @@ namespace shipping.Migrations
                     b.Property<int>("IDDanhMuc")
                         .HasColumnType("int");
 
-                    b.Property<int>("IDPhanLoaiDanhMuc")
-                        .HasColumnType("int");
-
                     b.Property<string>("MoTa")
                         .HasColumnType("nvarchar(max)");
 
@@ -225,6 +220,8 @@ namespace shipping.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IDSanPham");
+
+                    b.HasIndex("IDDanhMuc");
 
                     b.ToTable("SanPham");
                 });
@@ -244,6 +241,99 @@ namespace shipping.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("ThuocTinhBTSP");
+                });
+
+            modelBuilder.Entity("shipping.Model.BienTheSanPham", b =>
+                {
+                    b.HasOne("shipping.Model.SanPham", "SanPham")
+                        .WithMany("BienThes")
+                        .HasForeignKey("IDSanPham")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SanPham");
+                });
+
+            modelBuilder.Entity("shipping.Model.ChiTietBienTheSanPham", b =>
+                {
+                    b.HasOne("shipping.Model.BienTheSanPham", "BienTheSanPham")
+                        .WithMany("ChiTietBienThes")
+                        .HasForeignKey("IDBienTheSanPham")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("shipping.Model.GiaTriBTSP", "GiaTri")
+                        .WithMany("ChiTietBienThes")
+                        .HasForeignKey("IDGiaTriBienTheSanPham")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BienTheSanPham");
+
+                    b.Navigation("GiaTri");
+                });
+
+            modelBuilder.Entity("shipping.Model.ChiTietDVVanChuyen", b =>
+                {
+                    b.HasOne("shipping.Model.DonViVanChuyen", "DonViVanChuyen")
+                        .WithMany("ChiTietDVVanChuyens")
+                        .HasForeignKey("IDDonViVanChuyen")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DonViVanChuyen");
+                });
+
+            modelBuilder.Entity("shipping.Model.GiaTriBTSP", b =>
+                {
+                    b.HasOne("shipping.Model.ThuocTinhBTSP", "ThuocTinh")
+                        .WithMany("GiaTris")
+                        .HasForeignKey("IDThuocTinh")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ThuocTinh");
+                });
+
+            modelBuilder.Entity("shipping.Model.SanPham", b =>
+                {
+                    b.HasOne("shipping.Model.DanhMuc", "DanhMuc")
+                        .WithMany("SanPhams")
+                        .HasForeignKey("IDDanhMuc")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("DanhMuc");
+                });
+
+            modelBuilder.Entity("shipping.Model.BienTheSanPham", b =>
+                {
+                    b.Navigation("ChiTietBienThes");
+                });
+
+            modelBuilder.Entity("shipping.Model.DanhMuc", b =>
+                {
+                    b.Navigation("SanPhams");
+                });
+
+            modelBuilder.Entity("shipping.Model.DonViVanChuyen", b =>
+                {
+                    b.Navigation("ChiTietDVVanChuyens");
+                });
+
+            modelBuilder.Entity("shipping.Model.GiaTriBTSP", b =>
+                {
+                    b.Navigation("ChiTietBienThes");
+                });
+
+            modelBuilder.Entity("shipping.Model.SanPham", b =>
+                {
+                    b.Navigation("BienThes");
+                });
+
+            modelBuilder.Entity("shipping.Model.ThuocTinhBTSP", b =>
+                {
+                    b.Navigation("GiaTris");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace shipping.Model
 {
@@ -11,5 +12,8 @@ namespace shipping.Model
         public string? SKU { get; set; }
         public byte[]? HinhAnhBienThe {  get; set; }
         public string IDSanPham { get; set; } = default!;
+        [ForeignKey("IDSanPham")]
+        public SanPham SanPham { get; set; } = default!;
+        public ICollection<ChiTietBienTheSanPham> ChiTietBienThes { get; set; } = new List<ChiTietBienTheSanPham>();
     }
 }
