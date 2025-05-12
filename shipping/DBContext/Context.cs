@@ -15,5 +15,6 @@ namespace shipping.DBContext
         public DbSet<ChiTietBienTheSanPham> ChiTietBienTheSanPham { get; set; }
         public DbSet<GiaTriBTSP> GiaTriBTSP {  get; set; }
         public DbSet<ThuocTinhBTSP> ThuocTinhBTSP {  get; set; }
+        public DbSet<Images> Images { get; set; }
     }
 }

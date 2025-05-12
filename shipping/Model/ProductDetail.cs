@@ -5,6 +5,7 @@ namespace shipping.Model
     public class ProductDetail
     {
         public SanPhamDTO SanPham { get; set; }
+        public List<byte[]> Images { get; set; } = new();
         public string DanhMuc { get; set; }
         public List<BienTheSanPhamDTO> BienTheSanPham { get; set; } = new();
     }

@@ -71,7 +71,11 @@ namespace shipping.Services.Interface
     //IMAGE
     public interface IAddImage
     {
-        Task<bool> AddImageByID(string id, byte[] image);
+        Task<bool> AddImageByID(string id, List<byte[]> images);
+    }
+    public interface IDeleteImage
+    {
+        Task<bool> DeleteImageByID(List<int> Idimage);
     }
     
 

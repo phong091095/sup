@@ -134,7 +134,7 @@
   {
     "ContainingType": "shipping.Controllers.SanPhamController",
     "Method": "AddImage",
-    "RelativePath": "store/products/{id}",
+    "RelativePath": "store/products/{id}/images",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -145,8 +145,8 @@
         "IsRequired": true
       },
       {
-        "Name": "image",
-        "Type": "System.Byte[]",
+        "Name": "images",
+        "Type": "System.Collections.Generic.List\u00601[[System.Byte[], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],
@@ -184,6 +184,22 @@
       {
         "Name": "id",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "DeleteImage",
+    "RelativePath": "store/products/images",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idImage",
+        "Type": "System.Collections.Generic.List\u00601[[System.Int32, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": true
       }
     ],

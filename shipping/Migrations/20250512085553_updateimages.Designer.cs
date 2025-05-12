@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using shipping.DBContext;
 
@@ -11,9 +12,11 @@ using shipping.DBContext;
 namespace shipping.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250512085553_updateimages")]
+    partial class updateimages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,8 +34,8 @@ namespace shipping.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("IDHinhAnh")
-                        .HasColumnType("int");
+                    b.Property<byte[]>("HinhAnhBienThe")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("IDSanPham")
                         .IsRequired()
@@ -45,8 +48,6 @@ namespace shipping.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IDBienTheSanPham");
-
-                    b.HasIndex("IDHinhAnh");
 
                     b.HasIndex("IDSanPham");
 
@@ -221,6 +222,10 @@ namespace shipping.Migrations
                     b.Property<string>("IDSanPham")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<byte[]>("HinhAnhChinh")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<string>("IDCuaHang")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -267,12 +272,6 @@ namespace shipping.Migrations
 
             modelBuilder.Entity("shipping.Model.BienTheSanPham", b =>
                 {
-                    b.HasOne("shipping.Model.Images", "images")
-                        .WithMany()
-                        .HasForeignKey("IDHinhAnh")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("shipping.Model.SanPham", "SanPham")
                         .WithMany("BienThes")
                         .HasForeignKey("IDSanPham")
@@ -280,8 +279,6 @@ namespace shipping.Migrations
                         .IsRequired();
 
                     b.Navigation("SanPham");
-
-                    b.Navigation("images");
                 });
 
             modelBuilder.Entity("shipping.Model.ChiTietBienTheSanPham", b =>

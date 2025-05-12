@@ -14,11 +14,13 @@ namespace shipping.Controllers
         public SanPhamSvc spsvc { get; set; }
         public ShipSvc shipsvc { get; set; }
         public BienTheSvc bienTheSvc { get; set; }
-        public SanPhamController(SanPhamSvc _spsvc, ShipSvc shipsvc, BienTheSvc bienTheSvc)
+        public ImageSvc imageSvc { get; set; }
+        public SanPhamController(SanPhamSvc _spsvc, ShipSvc shipsvc, BienTheSvc bienTheSvc, ImageSvc imageSvc)
         {
             spsvc = _spsvc;
             this.shipsvc = shipsvc;
             this.bienTheSvc = bienTheSvc;
+            this.imageSvc = imageSvc;
         }
         //1
         [HttpPost("request")]
@@ -109,25 +111,42 @@ namespace shipping.Controllers
             return Ok("Xóa thành công");
         }
         //6.
-        [HttpPost("{id}")]
-        public async Task<IActionResult> AddImage([FromRoute] string id, [FromBody] byte[] image)
+        [HttpPost("{id}/images")]
+        public async Task<IActionResult> AddImage([FromRoute] string id, [FromBody] List<byte[]> images)
         {
             if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Mã sản phẩm trống");
             }
-            if (image == null)
+            if (!images.Any())
             {
                 return BadRequest(new { thongBao = "Hình ảnh trống" });
             }
-            var res = await spsvc.AddImageByID(id, image);
+            var res = await imageSvc.AddImageByID(id, images);
             if (!res)
             {
-                return BadRequest(new { thongBao = "Vui lòng kiểm tra lại mã sản phẩm." });
+                return BadRequest(new { thongBao = "Vui lòng kiểm tra lại mã sản phẩm. Số lượng ảnh không vượt quá 9." });
             }
-            return Ok("Lưuthành công");
+            return Ok("Lưu thành công");
         }
-        
+        //6.1
+        [HttpDelete("images")]
+        public async Task<IActionResult> DeleteImage( [FromBody] List<int> idImage)
+        {
+            if (!idImage.Any())
+            {
+                return BadRequest("Không có mã ảnh.");
+            }
+            var res = await imageSvc.DeleteImageByID(idImage);
+            if (res)
+            {
+                return Ok("Xóa ảnh thành công");
+            }
+            else
+            {
+                return BadRequest("Lỗi trong lúc xóa ảnh.");
+            }
+        }
         //7.
         [HttpGet("{id}/variant")]
         public async Task<IActionResult> GetBTSP([FromRoute] string id)

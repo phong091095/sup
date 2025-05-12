@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.EntityFrameworkCore;
 using shipping.DBContext;
 using shipping.Model;
 using shipping.Model.DTO;
@@ -9,9 +10,11 @@ namespace shipping.Services.Implement
     public class BienTheSvc : IGetAll<BienTheSanPham>, IPostDTO<BienTheSPDTO>, IDeleTeDTO<BienTheSanPham>, IPutGT
     {
         private readonly Context _context;
-        public BienTheSvc(Context context)
+        private readonly ImageSvc _imageSvc;
+        public BienTheSvc(Context context, ImageSvc imageSvc)
         {
             _context = context;
+            _imageSvc = imageSvc;
         }
 
         public async Task<BienTheSPDTO> CreateData(BienTheSPDTO type)
@@ -23,8 +26,12 @@ namespace shipping.Services.Implement
                 IDSanPham = type.IDSanPham,
                 Gia = type.Gia,
                 SKU = type.SKU,
-                SoLuong = type.SoLuong,
-                HinhAnhBienThe = type.HinhAnhBienThe
+                SoLuong = type.SoLuong
+            };
+            var newimage = new Images
+            {
+                IDSanPham = "BTSP" + count,
+                HinhAnh = type.HinhAnhBienThe
             };
             await _context.BienTheSanPham.AddAsync(item);
             return type;
