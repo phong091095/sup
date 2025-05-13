@@ -241,7 +241,6 @@ namespace shipping.Services.Implement
 
                     var tt = _context.ThuocTinhBTSP.FirstOrDefault(x => x.ID == gt.IDThuocTinh);
                     if (tt == null) continue;
-                    tt.TenThuocTinh = ttitem.TenThuocTinh;
                     gt.TenGiaTri = ttitem.TenGiaTri;
                 }
             }
