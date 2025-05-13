@@ -4,11 +4,10 @@ namespace shipping.Model.DTO
 {
     public class DonViVanChuyenDTO
     {
-        public string IDDonViVanChuyen { get; set; } = default!;
 
         [Required(ErrorMessage = "Vui lòng cung cấp tên đơn vị vân chuyển.")]
         [Length(3, 255, ErrorMessage = "Tên đơn vị vân chuyển phải có độ dài từ 3 đến 255 ký tự.")]
-        public string TenDonVi { get; set; } = default!;
+        public string? TenDonVi { get; set; } = default!;
 
         [RegularExpression(@"^0\d{9}$", ErrorMessage = "Số điện thoại không hợp lệ.")]
         public string? SoDienThoai { get; set; } = default!;

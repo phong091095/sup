@@ -26,4 +26,13 @@ namespace shipping.Model
         public string? TenSanPham { get; set;}
         public string? Path { get; set;}
     }
+    public class ProductReview
+    {
+        public string IDBienTheSanPham { get; set; } = default!;
+        public string PathDanhMuc { get; set; } = default;
+        public byte[] HinhAnh { get; set; } = default!;
+        public string TenSanPham {get;set;} = default!;
+        public string MoTa { get; set; } = default!;
+        public List<BienTheSanPhamDTO> BienTheSanPham { get; set; } = new();
+    }
 }

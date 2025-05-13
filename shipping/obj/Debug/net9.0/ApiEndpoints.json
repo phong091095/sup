@@ -9,23 +9,7 @@
     "Parameters": [
       {
         "Name": "dvvc",
-        "Type": "shipping.Model.DonViVanChuyen",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "shipping.Controllers.ShippingController",
-    "Method": "UpdateDVVC",
-    "RelativePath": "admin/shipping-providers",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dvvc",
-        "Type": "shipping.Model.DonViVanChuyen",
+        "Type": "shipping.Model.DTO.DonViVanChuyenDTO",
         "IsRequired": true
       }
     ],
@@ -39,6 +23,27 @@
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.ShippingController",
+    "Method": "UpdateDVVC",
+    "RelativePath": "admin/shipping-providers/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dvvc",
+        "Type": "shipping.Model.DTO.DonViVanChuyenDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -75,15 +80,78 @@
   },
   {
     "ContainingType": "shipping.Controllers.ShippingController",
-    "Method": "CreateDetail",
-    "RelativePath": "admin/shipping-providers/createdetail",
+    "Method": "CreateDetailVC",
+    "RelativePath": "admin/shipping-providers/detail",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "detail",
-        "Type": "shipping.Model.ChiTietDVVanChuyen",
+        "Name": "details",
+        "Type": "System.Collections.Generic.List\u00601[[shipping.Model.DTO.ChiTietDVVanChuyenDTO, shipping, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.ShippingController",
+    "Method": "UpdateCTVC",
+    "RelativePath": "admin/shipping-providers/shipping/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "shipping.Model.DTO.ChiTietDVVanChuyenDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "GetAllStore",
+    "RelativePath": "admin/store",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "GetStoreByID",
+    "RelativePath": "admin/store/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "StoreApprove",
+    "RelativePath": "admin/store/{id}/approve",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -102,7 +170,7 @@
   {
     "ContainingType": "shipping.Controllers.SanPhamController",
     "Method": "UpdateSP",
-    "RelativePath": "store/products",
+    "RelativePath": "store/products/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -110,6 +178,11 @@
       {
         "Name": "sp",
         "Type": "shipping.Model.DTO.SanPhamDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -162,12 +235,12 @@
     "Parameters": [
       {
         "Name": "data",
-        "Type": "shipping.Model.ProductDetail",
+        "Type": "shipping.Model.ProductReview",
         "IsRequired": true
       },
       {
         "Name": "id",
-        "Type": "",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -184,6 +257,53 @@
       {
         "Name": "id",
         "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "CreateBTSP",
+    "RelativePath": "store/products/{id}/variants",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "shipping.Model.DTO.BienTheSPDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "UpdateChiTietBT",
+    "RelativePath": "store/products/{id}/variants/{variantsId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "shipping.Model.DTO.BienTheSPDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "variantsId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
         "IsRequired": true
       }
     ],
@@ -216,59 +336,6 @@
       {
         "Name": "request",
         "Type": "shipping.Model.RequestbodyDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "shipping.Controllers.SanPhamController",
-    "Method": "UpdateCTVC",
-    "RelativePath": "store/products/shipping/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "data",
-        "Type": "shipping.Model.DTO.ChiTietDVVanChuyenDTO",
-        "IsRequired": true
-      },
-      {
-        "Name": "id",
-        "Type": "System.Guid",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "shipping.Controllers.SanPhamController",
-    "Method": "UpdateChiTietBT",
-    "RelativePath": "store/products/variants",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "dto",
-        "Type": "shipping.Model.DTO.BienTheSPDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "shipping.Controllers.SanPhamController",
-    "Method": "CreateBTSP",
-    "RelativePath": "store/products/variants",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "data",
-        "Type": "shipping.Model.DTO.BienTheSPDTO",
         "IsRequired": true
       }
     ],

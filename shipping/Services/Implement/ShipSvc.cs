@@ -6,7 +6,7 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class ShipSvc : IShipServices<DonViVanChuyen>,IPostDTO<DonViVanChuyen>,IShipDTO<ChiTietDonViVanChuyenDTO>, IPutShip
+    public class ShipSvc : IShipServices<DonViVanChuyen>, IPostDVVC<DonViVanChuyenDTO>,IShipDTO<ChiTietDonViVanChuyenDTO>, IPutShip
     {
         private readonly Context _context;
         public ShipSvc(Context context) {
@@ -17,9 +17,9 @@ namespace shipping.Services.Implement
             var ds = await _context.DonViVanChuyen.ToListAsync();
             return ds;
         }
-        public async Task<string> UpdateData(DonViVanChuyen type)
+        public async Task<string> UpdateData(DonViVanChuyenDTO type,string id)
         {
-            var ds = _context.DonViVanChuyen.FirstOrDefault(x=>x.IDDonViVanChuyen == type.IDDonViVanChuyen);
+            var ds = _context.DonViVanChuyen.FirstOrDefault(x=>x.IDDonViVanChuyen == id);
             string mess = "";
             if (ds == null)
             {
@@ -28,6 +28,8 @@ namespace shipping.Services.Implement
             }
             ds.TenDonVi = type.TenDonVi;
             ds.SoDienThoai = type.SoDienThoai;
+            ds.Email = type.Email;
+            ds.MoTa = type.MoTa;
             await _context.SaveChangesAsync();
             mess = "Cập nhật thành công";
             return mess;
@@ -58,26 +60,55 @@ namespace shipping.Services.Implement
             var dsChiTiet = await _context.ChiTietDVVanChuyen
                 .Where(ct => ct.IDDonViVanChuyen == id)
                 .ToListAsync();
-
+            List<ChiTietDVVanChuyenDTO> detail = new List<ChiTietDVVanChuyenDTO>();
+            foreach(var item in dsChiTiet)
+            {
+                var dt = new ChiTietDVVanChuyenDTO();
+                dt.PhiVanChuyen = item.PhiVanChuyen;
+                dt.IDDonViVanChuyen = item.IDDonViVanChuyen;
+                dt.NgayCapNhat = item.NgayCapNhat;
+                dt.IDCuaHang = item.IDCuaHang;
+                dt.ThoiGianDuKien = item.ThoiGianDuKien;
+                detail.Add(dt);
+            }
             var result = new ChiTietDonViVanChuyenDTO
             {
                 dvvc = dvvc,
-                dsdetail = dsChiTiet
+                dsdetail = detail
             };
 
             return result;
         }
 
 
-        public async Task<DonViVanChuyen> CreateData(DonViVanChuyen type)
+        public async Task<DonViVanChuyenDTO> CreateDVVC(DonViVanChuyenDTO type)
         {
+            DonViVanChuyen dvvc = new DonViVanChuyen();
             int count = _context.DonViVanChuyen.Count() + 1;
-            type.IDDonViVanChuyen = "DVGH" + count;
-            _context.DonViVanChuyen.Add(type);
+            dvvc.IDDonViVanChuyen = "DVGH" + count;
+            dvvc.TenDonVi = type.TenDonVi;
+            dvvc.MoTa = type.MoTa;
+            dvvc.Email = type.Email;
+            dvvc.SoDienThoai = type.SoDienThoai;
+            dvvc.TrangThai = type.TrangThai;
+            _context.DonViVanChuyen.Add(dvvc);
             await _context.SaveChangesAsync();
             return type;
         }
-
+        public async Task<bool> CreateCTVC(List<ChiTietDVVanChuyenDTO> type)
+        {
+            foreach (var item in type) {
+                ChiTietDVVanChuyen ct = new ChiTietDVVanChuyen();
+                ct.ID = Guid.NewGuid();
+                ct.PhiVanChuyen = item.PhiVanChuyen;
+                ct.IDDonViVanChuyen = item.IDDonViVanChuyen;
+                ct.NgayCapNhat = DateTime.Now;
+                ct.ThoiGianDuKien = item.ThoiGianDuKien;
+                _context.ChiTietDVVanChuyen.Add(ct);
+            }
+           await _context.SaveChangesAsync();
+            return true;
+        }
 
         public async Task<bool> PutShipping(ChiTietDVVanChuyenDTO type, Guid id)
         {
@@ -92,5 +123,7 @@ namespace shipping.Services.Implement
             await _context.SaveChangesAsync();
             return true;
         }
+
+       
     }
 }

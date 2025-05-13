@@ -15,12 +15,13 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IShipServices<DonViVanChuyen>,ShipSvc>();
 builder.Services.AddScoped<IShipDTO<ChiTietDonViVanChuyenDTO>,ShipSvc>();
-builder.Services.AddScoped<IPostDTO<DonViVanChuyen>, ShipSvc > ();
+builder.Services.AddScoped<IPostDVVC<DonViVanChuyenDTO>, ShipSvc > ();
 builder.Services.AddScoped<IPutShip, ShipSvc>();
+//
 builder.Services.AddScoped<IPostDTO<ChiTietDVVanChuyen>, ShipDetail>();
 //
 builder.Services.AddScoped<IGetByRQ<ProductDetail>, SanPhamSvc>();
-builder.Services.AddScoped<IPutReview<ProductDetail>, SanPhamSvc>();
+builder.Services.AddScoped<IPutReview<ProductReview>, SanPhamSvc>();
 builder.Services.AddScoped<IGetDTO<ProductDetail>, SanPhamSvc>();
 builder.Services.AddScoped<IDeleTeDTO<SanPham>, SanPhamSvc>();
 builder.Services.AddScoped<IPutSp<SanPhamDTO>, SanPhamSvc>();

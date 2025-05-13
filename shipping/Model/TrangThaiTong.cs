@@ -15,5 +15,13 @@
             ChuaDang,
             DangHoatDong
         }
+        public enum StoreStatus
+        {
+            HoatDong,
+            NgungHoatDong,
+            Pending,
+            Reject,
+            ViPham
+        }
     }
 }

@@ -11,9 +11,9 @@ namespace shipping.Services.Implement
         {
             _context = context;
         }
-        public async Task<ChiTietDVVanChuyen> CreateData(ChiTietDVVanChuyen type)
+        public async Task<ChiTietDVVanChuyen> CreateData(ChiTietDVVanChuyen type, string id)
         {
-            var exists = _context.DonViVanChuyen.FirstOrDefault(x=>x.IDDonViVanChuyen == type.IDDonViVanChuyen);
+            var exists = _context.DonViVanChuyen.FirstOrDefault(x=>x.IDDonViVanChuyen == id);
             if (exists == null) {
                 return null;
             }

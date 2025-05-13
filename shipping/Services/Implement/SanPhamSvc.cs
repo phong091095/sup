@@ -8,7 +8,7 @@ using static shipping.Model.TrangThaiTong;
 
 namespace shipping.Services.Implement
 {
-    public class SanPhamSvc : IGetDTO<ProductDetail>,IGetByRQ<ProductDetail>,IDeleTeDTO<SanPham>,IPutReview<ProductDetail>, IPutSp<SanPhamDTO>
+    public class SanPhamSvc : IGetDTO<ProductDetail>,IGetByRQ<ProductDetail>,IDeleTeDTO<SanPham>,IPutReview<ProductReview>, IPutSp<SanPhamDTO>
     {
         private readonly Context _context;
         public SanPhamSvc(Context context)
@@ -99,8 +99,7 @@ namespace shipping.Services.Implement
             {
                 SanPham = new SanPhamDTO
                 {
-                    IDSanPham = sp.IDSanPham,
-                    IDDanhMuc = sp.IDDanhMuc,
+                    PathDanhMuc = sp.DanhMuc.Path,
                     IDCuaHang = sp.IDCuaHang,
                     TenSanPham = sp.TenSanPham,
                     MoTa = sp.MoTa,
@@ -114,12 +113,10 @@ namespace shipping.Services.Implement
                 {
                     bienthe = new BienTheSPDTO
                     {
-                        IDBienTheSanPham = bt.IDBienTheSanPham,
                         Gia = bt.Gia,
                         SoLuong = bt.SoLuong,
                         SKU = bt.SKU,
                         HinhAnhBienThe = bt.HinhAnh,
-                        IDSanPham = bt.IDSanPham
                     },
                     GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
                     {
@@ -147,8 +144,7 @@ namespace shipping.Services.Implement
             {
                 SanPham = new SanPhamDTO
                 {
-                    IDSanPham = sp.IDSanPham,
-                    IDDanhMuc = sp.IDDanhMuc,
+                    PathDanhMuc = sp.DanhMuc.Path,
                     IDCuaHang = sp.IDCuaHang,
                     TenSanPham = sp.TenSanPham,
                     MoTa = sp.MoTa,
@@ -162,12 +158,10 @@ namespace shipping.Services.Implement
                 {
                     bienthe = new BienTheSPDTO
                     {
-                        IDBienTheSanPham = bt.IDBienTheSanPham,
                         Gia = bt.Gia,
                         SoLuong = bt.SoLuong,
                         SKU = bt.SKU,
                         HinhAnhBienThe = bt.HinhAnh,
-                        IDSanPham = bt.IDSanPham
                     },
                     GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
                     {
@@ -181,9 +175,9 @@ namespace shipping.Services.Implement
         }
 
 
-        public async Task<bool> PutBienTheByID(BienTheSPDTO type)
+        public async Task<bool> PutBienTheByID(BienTheSPDTO type,string variantsId)
         {
-            var bt = await _context.BienTheSanPham.FirstOrDefaultAsync(x=>x.IDBienTheSanPham == type.IDBienTheSanPham);
+            var bt = await _context.BienTheSanPham.FirstOrDefaultAsync(x=>x.IDBienTheSanPham == variantsId);
             if (bt == null) {
                 return false;
             }
@@ -195,23 +189,24 @@ namespace shipping.Services.Implement
             return true;
         }
 
-        public async Task<bool> PutData(SanPhamDTO type)
+        public async Task<bool> PutData(SanPhamDTO type, string id)
         {
-            var exists = await _context.SanPham.FirstOrDefaultAsync(x=>x.IDSanPham == type.IDSanPham);
+            var exists = await _context.SanPham.FirstOrDefaultAsync(x=>x.IDSanPham == id);
             if (exists == null)
             {
                 return false;
             }
-            exists.IDDanhMuc = type.IDDanhMuc;
+            var danhmuc = await _context.DanhMuc.FirstOrDefaultAsync(x=>x.Path == type.PathDanhMuc);
+            exists.IDDanhMuc = danhmuc.IDDanhMuc;
             exists.MoTa = type.MoTa;
             exists.TenSanPham = type.TenSanPham;    
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public async Task<bool> PutReview(ProductDetail type)
+        public async Task<bool> PutReview(ProductReview type,string id)
         {
-            var exists = await _context.SanPham.FirstOrDefaultAsync(x => x.IDSanPham == type.SanPham.IDSanPham);
+            var exists = await _context.SanPham.FirstOrDefaultAsync(x => x.IDSanPham == id);
             if (exists == null)
             {
                 return false;
@@ -221,15 +216,17 @@ namespace shipping.Services.Implement
             {
                 return false;
             }
-            exists.MoTa = type.SanPham.MoTa;
-            exists.TenSanPham = type.SanPham.TenSanPham;
-            exists.IDDanhMuc = type.SanPham.IDDanhMuc;
+            var danhmuc =  await _context.DanhMuc.FirstOrDefaultAsync(x=> x.Path == type.PathDanhMuc);
+            exists.IDDanhMuc = danhmuc.IDDanhMuc;
+            exists.MoTa = type.MoTa;
+            exists.TenSanPham = type.TenSanPham;
+            danhmuc.Path = type.PathDanhMuc;
             var listdto = type.BienTheSanPham;
             foreach (var item in listdto)
             {
                 var bienThe = item.bienthe;
                 var thongtin = item.GiaTriBienTheSanPham;
-                var existsbt = bt.FirstOrDefault(x => x.IDBienTheSanPham == bienThe.IDBienTheSanPham);
+                var existsbt = bt.FirstOrDefault(x => x.IDBienTheSanPham == type.IDBienTheSanPham);
                 if (existsbt == null)
                 {
                     continue;

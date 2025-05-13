@@ -6,14 +6,19 @@ namespace shipping.Services.Interface
     public interface IShipServices<Type>
     {
         Task<IEnumerable<Type>> GetDatas();
-        Task<string> UpdateData(Type type);
+        Task<string> UpdateData(DonViVanChuyenDTO type,string id);
         Task<bool> UpdatePatchData(string id);
     }
     //CREATE
     
     public interface IPostDTO<Type>
     {
-        Task<Type> CreateData(Type type);
+        Task<Type> CreateData(Type type,string id);
+    }
+    public interface IPostDVVC<Type>
+    {
+        Task<Type> CreateDVVC(Type type);
+        Task<bool> CreateCTVC(List<ChiTietDVVanChuyenDTO> type);
     }
 
     //GETDATA
@@ -44,16 +49,16 @@ namespace shipping.Services.Interface
     }
     public interface IPutByID<Type>
     {
-        Task<bool> PutBienTheByID(Type type);
+        Task<bool> PutBienTheByID(Type type,string id);
         Task<bool> PutChiTietBTByID(string id,GiaTriBienTheSanPhamDto type);
     }
     public interface IPutSp<Type>
     {
-        Task<bool> PutData(Type type);
+        Task<bool> PutData(Type type, string id);
     }
     public interface IPutReview<Type>
     {
-        Task<bool> PutReview(ProductDetail detail);
+        Task<bool> PutReview(ProductReview detail,string id);
     }
     public interface IPutGT
     {
@@ -78,5 +83,18 @@ namespace shipping.Services.Interface
         Task<bool> DeleteImageByID(List<int> Idimage);
     }
     
-
+    //StoreInterface
+    public interface IGetAllStore
+    {
+        Task<List<CuaHang>> GetAll();
+        Task<CuaHang> GetByID(string id);
+    }
+    public interface IPutApprove
+    {
+        Task<int> PutApprove(string id);
+    }
+    public interface IRejectStore
+    {
+        Task<int> RejectStore(string id);
+    }
 }

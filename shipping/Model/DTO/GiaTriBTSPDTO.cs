@@ -6,7 +6,7 @@ namespace shipping.Model.DTO
     {
         public int ID { get; set; }
         public int IDThuocTinh { get; set; }
-        public string TenGiaTri { get; set; } = default!;
+        public string? TenGiaTri { get; set; } = default!;
         
     }
 }

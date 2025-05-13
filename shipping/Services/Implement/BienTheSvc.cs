@@ -17,13 +17,13 @@ namespace shipping.Services.Implement
             _imageSvc = imageSvc;
         }
 
-        public async Task<BienTheSPDTO> CreateData(BienTheSPDTO type)
+        public async Task<BienTheSPDTO> CreateData(BienTheSPDTO type, string id)
         {
             var count = _context.BienTheSanPham.Count() + 1;
             var item = new BienTheSanPham
             {
                 IDBienTheSanPham = "BTSP" + count,
-                IDSanPham = type.IDSanPham,
+                IDSanPham = id,
                 Gia = type.Gia,
                 SKU = type.SKU,
                 SoLuong = type.SoLuong

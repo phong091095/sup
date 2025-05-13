@@ -12,13 +12,11 @@ namespace shipping.Controllers
     public class SanPhamController : Controller
     {
         public SanPhamSvc spsvc { get; set; }
-        public ShipSvc shipsvc { get; set; }
         public BienTheSvc bienTheSvc { get; set; }
         public ImageSvc imageSvc { get; set; }
-        public SanPhamController(SanPhamSvc _spsvc, ShipSvc shipsvc, BienTheSvc bienTheSvc, ImageSvc imageSvc)
+        public SanPhamController(SanPhamSvc _spsvc, BienTheSvc bienTheSvc, ImageSvc imageSvc)
         {
             spsvc = _spsvc;
-            this.shipsvc = shipsvc;
             this.bienTheSvc = bienTheSvc;
             this.imageSvc = imageSvc;
         }
@@ -48,14 +46,14 @@ namespace shipping.Controllers
             return Ok(res);
         }
         //2
-        [HttpPut()]
-        public async Task<IActionResult> UpdateSP(SanPhamDTO sp)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSP(SanPhamDTO sp, [FromRoute] string id)
         {
             if (sp == null)
             {
                 return BadRequest(new { thongBao = "Dữ liệu không đủ" });
             }
-            var res = await spsvc.PutData(sp);
+            var res = await spsvc.PutData(sp,id);
             if (res)
             {
                 return Ok("Cập nhật thành công");
@@ -66,35 +64,21 @@ namespace shipping.Controllers
             }
         }
         //3
-        [HttpPut("variants")]
-        public async Task<IActionResult> UpdateChiTietBT([FromBody] BienTheSPDTO dto)
+        [HttpPut("{id}/variants/{variantsId}")]
+        public async Task<IActionResult> UpdateChiTietBT([FromBody] BienTheSPDTO dto, [FromRoute] string variantsId)
         {
             if (dto == null)
             {
                 return BadRequest(new { thongBao = "Dữ liệu đầu vào không đầy đủ" });
             }
-            var res = await spsvc.PutBienTheByID(dto);
+            var res = await spsvc.PutBienTheByID(dto, variantsId);
             if (!res)
             {
                 return BadRequest(new { thongBao = "Vui lòng kiểm trả mã sản phẩm hoặc ID biến thể không tồn tại" });
             }
             return Ok("Cập nhật thành công");
         }
-        //4.
-        [HttpPut("shipping/{id}")]
-        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyenDTO data, Guid id)
-        {
-            if (data == null)
-            {
-                return BadRequest(new { thongBao = "Thông tin chi tiết đơn vị vận chuyển không đủ" });
-            }
-            var res = await shipsvc.PutShipping(data, id);
-            if (!res)
-            {
-                return BadRequest(new { thongBao = "Không tìm thấy mã đỡ vị vận chuyển" });
-            }
-            return Ok("Cập nhật thành công");
-        }
+        
         //5.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSP([FromRoute] string id)
@@ -163,14 +147,14 @@ namespace shipping.Controllers
             return Ok(res);
         }
         //8.
-        [HttpPost("variants")]
-        public async Task<IActionResult> CreateBTSP([FromBody]BienTheSPDTO data)
+        [HttpPost("{id}/variants")]
+        public async Task<IActionResult> CreateBTSP([FromBody]BienTheSPDTO data,[FromRoute]string id)
         {
             if (data == null)
             {
                 return BadRequest("Dữ liệu không đầy đủ");
             }
-            var res = await bienTheSvc.CreateData(data);
+            var res = await bienTheSvc.CreateData(data,id);
             if (res == null)
             {
                 return BadRequest(new { thongBao = "Thêm biến thể thất bại" });
@@ -194,13 +178,13 @@ namespace shipping.Controllers
         }
         //10.
         [HttpPost("{id}/request-review")]
-        public async Task<IActionResult> UpdateReview([FromBody] ProductDetail data)
+        public async Task<IActionResult> UpdateReview([FromBody] ProductReview data, [FromRoute] string id)
         {
             if(data == null)
             {
                 return BadRequest("Dữ liệu không đầy đủ");
             }
-            var res = await spsvc.PutReview(data);
+            var res = await spsvc.PutReview(data,id);
             if (!res)
             {
                 return BadRequest(new { thongBao = "Không thể gửi kiểm duyệt. Sản phẩm không tồn tại hoặc không ở trạng thái vi phạm" });
@@ -209,7 +193,7 @@ namespace shipping.Controllers
         }
         //11.
         [HttpPut("variants/{id}")]
-        public async Task<IActionResult> UpdateGTBT([FromBody] GiaTriBienTheSanPhamDto data, int id)
+        public async Task<IActionResult> UpdateGTBT([FromBody] GiaTriBienTheSanPhamDto data, [FromRoute] int id)
         {
             if(id == 0)
             {
@@ -226,5 +210,6 @@ namespace shipping.Controllers
             }
             return Ok("Cập nhật thành công");
         }
+
     }
 }

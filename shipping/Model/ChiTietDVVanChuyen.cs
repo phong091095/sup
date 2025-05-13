@@ -6,9 +6,9 @@ namespace shipping.Model
     public class ChiTietDVVanChuyen
     {
         [Key]
-        public Guid ID { get; set; } = Guid.NewGuid();
+        public Guid ID { get; set; } = default!;
 
-        public string IDCuaHang { get; set; } = default!;
+        public string? IDCuaHang { get; set; } = default!;
 
         [Required]
         public string IDDonViVanChuyen { get; set; } = default!;

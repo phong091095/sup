@@ -10,21 +10,14 @@ namespace shipping.Controllers
     [Route("admin/shipping-providers")]
     public class ShippingController : Controller
     {
-        private readonly IShipServices<DonViVanChuyen> shipServices;
-        private readonly IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO;
-        private readonly IPostDTO<DonViVanChuyen> postDTO;
-        private readonly IPostDTO<ChiTietDVVanChuyen> postDetail;
+        
         public ShipSvc svc { get; set; }
-        public ShippingController(ShipSvc svc,IShipServices<DonViVanChuyen> shipServices, IShipDTO<ChiTietDonViVanChuyenDTO> shipDTO, IPostDTO<DonViVanChuyen> postDTO,IPostDTO<ChiTietDVVanChuyen> postDetail)
+        public ShippingController(ShipSvc svc)
         {
-            this.shipServices = shipServices;
-            this.shipDTO = shipDTO;
-            this.postDTO = postDTO;
-            this.postDetail = postDetail;
             this.svc = svc;
         }
         [HttpPost]
-        public async Task<IActionResult> CreateDVVC(DonViVanChuyen dvvc)
+        public async Task<IActionResult> CreateDVVC([FromBody] DonViVanChuyenDTO dvvc)
         {
             if (dvvc == null)
             {
@@ -40,19 +33,20 @@ namespace shipping.Controllers
                     thongBao = errors
                 });
             }
-            var res = await postDTO.CreateData(dvvc);
+            var res = await svc.CreateDVVC(dvvc);
             return Ok(new
             {
                 thongBao = "Thêm mới đơn vị vận chuyển thành công.",
                 res
             });
         }
-        [HttpPost("createdetail")]
-        public async Task<IActionResult> CreateDetail(ChiTietDVVanChuyen detail)
+        [HttpPost("detail")]
+        public async Task<IActionResult> CreateDetailVC([FromBody] List<ChiTietDVVanChuyenDTO> details)
         {
-            if (detail == null)
+            if (!details.Any())
             {
                 return BadRequest("Dữ liệu truyền vào bị thiếu");
+
             }
             if (!ModelState.IsValid)
             {
@@ -64,26 +58,11 @@ namespace shipping.Controllers
                     thongBao = errors
                 });
             }
-            var res = await postDetail.CreateData(detail);
-            if (res != null)
-            {
-                return Ok(new
-                {
-                    thongBao = "Thêm mới chi tiết đơn vị vận chuyển thành công.",
-                    res
-                });
-            }
-            else
-            {
-                return BadRequest(new
-                {
-                    thongBao = "Thêm mới chi tiết đơn vị vận chuyển thất bại.",
-                });
-            }
+            var res = await svc.CreateCTVC(details);
+            return Ok("Tạo chi tiết thành công");
         }
-
-        [HttpPut]
-        public async Task<IActionResult> UpdateDVVC(DonViVanChuyen dvvc)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateDVVC(DonViVanChuyenDTO dvvc, [FromRoute] string id)
         {
             if (dvvc == null)
             {
@@ -99,7 +78,7 @@ namespace shipping.Controllers
                     thongBao = errors
                 });
             }
-            var res = await shipServices.UpdateData(dvvc);
+            var res = await svc.UpdateData(dvvc,id);
             if (res == "Cập nhật thành công")
             {
                 return Ok(new { thongBao = res });
@@ -116,7 +95,7 @@ namespace shipping.Controllers
             {
                 return BadRequest(new { thongBao = "ID truyền vào bị trống" });
             }
-            var res = await shipServices.UpdatePatchData(id);
+            var res = await svc.UpdatePatchData(id);
             if (res)
             {
                 return Ok(new { thongBao = "Cập nhật thành công" });
@@ -129,7 +108,7 @@ namespace shipping.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllData()
         {
-            var res = await shipServices.GetDatas();
+            var res = await svc.GetDatas();
             if (res == null)
             {
                 return BadRequest(new { thongBao = "Không lấy được dữ liệu vui lòng kiểm tra lại kết nối" });
@@ -139,13 +118,27 @@ namespace shipping.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDVByID([FromRoute] string id)
         {
-            var res = await shipDTO.GetDataByIds(id);
+            var res = await svc.GetDataByIds(id);
             if (res == null)
             {
                 return BadRequest(new { thongBao = "Vui lòng kiểm tra lại ID" });
             }
             return Ok(res);
         }
-
+        //4.
+        [HttpPut("shipping/{id}")]
+        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyenDTO data, Guid id)
+        {
+            if (data == null)
+            {
+                return BadRequest(new { thongBao = "Thông tin chi tiết đơn vị vận chuyển không đủ" });
+            }
+            var res = await svc.PutShipping(data, id);
+            if (!res)
+            {
+                return BadRequest(new { thongBao = "Không tìm thấy mã đơn vị vận chuyển" });
+            }
+            return Ok("Cập nhật thành công");
+        }
     }
 }
