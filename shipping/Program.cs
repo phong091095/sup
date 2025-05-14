@@ -18,8 +18,6 @@ builder.Services.AddScoped<IShipDTO<ChiTietDonViVanChuyenDTO>,ShipSvc>();
 builder.Services.AddScoped<IPostDVVC<DonViVanChuyenDTO>, ShipSvc > ();
 builder.Services.AddScoped<IPutShip, ShipSvc>();
 //
-builder.Services.AddScoped<IPostDTO<ChiTietDVVanChuyen>, ShipDetail>();
-//
 builder.Services.AddScoped<IGetByRQ<ProductDetail>, SanPhamSvc>();
 builder.Services.AddScoped<IPutReview<ProductReview>, SanPhamSvc>();
 builder.Services.AddScoped<IGetDTO<ProductDetail>, SanPhamSvc>();
@@ -33,7 +31,6 @@ builder.Services.AddScoped<IPutGT,BienTheSvc>();
 //
 builder.Services.AddScoped<SanPhamSvc>();
 builder.Services.AddScoped<BienTheSvc>();
-builder.Services.AddScoped<ShipDetail>();
 builder.Services.AddScoped<ShipSvc>();
 //
 builder.Services.AddScoped<ImageSvc>();

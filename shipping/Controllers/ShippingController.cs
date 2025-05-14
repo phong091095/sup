@@ -16,6 +16,7 @@ namespace shipping.Controllers
         {
             this.svc = svc;
         }
+        //1.1
         [HttpPost]
         public async Task<IActionResult> CreateDVVC([FromBody] DonViVanChuyenDTO dvvc)
         {
@@ -40,6 +41,7 @@ namespace shipping.Controllers
                 res
             });
         }
+        //1.1.1
         [HttpPost("detail")]
         public async Task<IActionResult> CreateDetailVC([FromBody] List<ChiTietDVVanChuyenDTO> details)
         {
@@ -61,6 +63,22 @@ namespace shipping.Controllers
             var res = await svc.CreateCTVC(details);
             return Ok("Tạo chi tiết thành công");
         }
+        //1.2
+        [HttpPut("detail/{id}")]
+        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyenDTO data, [FromRoute] Guid id)
+        {
+            if (data == null)
+            {
+                return BadRequest(new { thongBao = "Thông tin chi tiết đơn vị vận chuyển không đủ" });
+            }
+            var res = await svc.PutShipping(data, id);
+            if (!res)
+            {
+                return BadRequest(new { thongBao = "Không tìm thấy mã đơn vị vận chuyển" });
+            }
+            return Ok("Cập nhật thành công");
+        }
+        //1.2.3
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateDVVC(DonViVanChuyenDTO dvvc, [FromRoute] string id)
         {
@@ -88,6 +106,7 @@ namespace shipping.Controllers
                 return BadRequest(new { thongBao = res });
             }
         }
+        //1.3
         [HttpPatch("{id}")]
         public async Task<IActionResult> UpdatePatchDVVC([FromRoute] string id)
         {
@@ -105,6 +124,8 @@ namespace shipping.Controllers
                 return BadRequest(new { thongBao = "Cập nhật trạng thái thất bại. Vui lòng kiểm tra lại ID." });
             }
         }
+
+        //1.4
         [HttpGet]
         public async Task<IActionResult> GetAllData()
         {
@@ -115,6 +136,7 @@ namespace shipping.Controllers
             }
             return Ok(res);
         }
+        //1.5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDVByID([FromRoute] string id)
         {
@@ -125,20 +147,6 @@ namespace shipping.Controllers
             }
             return Ok(res);
         }
-        //4.
-        [HttpPut("shipping/{id}")]
-        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyenDTO data, Guid id)
-        {
-            if (data == null)
-            {
-                return BadRequest(new { thongBao = "Thông tin chi tiết đơn vị vận chuyển không đủ" });
-            }
-            var res = await svc.PutShipping(data, id);
-            if (!res)
-            {
-                return BadRequest(new { thongBao = "Không tìm thấy mã đơn vị vận chuyển" });
-            }
-            return Ok("Cập nhật thành công");
-        }
+        
     }
 }

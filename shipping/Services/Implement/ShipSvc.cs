@@ -117,6 +117,14 @@ namespace shipping.Services.Implement
             {
                 return false;
             }
+            if (!string.IsNullOrEmpty(type.IDCuaHang))
+            {
+                exists.IDCuaHang = type.IDCuaHang;
+            }
+            else
+            {
+                exists.IDCuaHang = null;
+            }
             exists.PhiVanChuyen = type.PhiVanChuyen;
             exists.NgayCapNhat = DateTime.Now;
             exists.ThoiGianDuKien = type.ThoiGianDuKien;

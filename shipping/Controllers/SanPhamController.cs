@@ -3,6 +3,7 @@ using shipping.Model;
 using shipping.Model.DTO;
 using shipping.Services.Implement;
 using shipping.Services.Interface;
+using System.Runtime.Intrinsics.Arm;
 
 namespace shipping.Controllers
 {
@@ -14,11 +15,14 @@ namespace shipping.Controllers
         public SanPhamSvc spsvc { get; set; }
         public BienTheSvc bienTheSvc { get; set; }
         public ImageSvc imageSvc { get; set; }
-        public SanPhamController(SanPhamSvc _spsvc, BienTheSvc bienTheSvc, ImageSvc imageSvc)
+        public ShipSvc svc { get; set; }
+
+        public SanPhamController(SanPhamSvc _spsvc, BienTheSvc bienTheSvc, ImageSvc imageSvc, ShipSvc svc)
         {
             spsvc = _spsvc;
             this.bienTheSvc = bienTheSvc;
             this.imageSvc = imageSvc;
+            this.svc = svc;
         }
         //1
         [HttpPost("request")]
@@ -78,7 +82,21 @@ namespace shipping.Controllers
             }
             return Ok("Cập nhật thành công");
         }
-        
+        //4.
+        [HttpPut("shipping/{id}")]
+        public async Task<IActionResult> UpdateCTVC([FromBody] ChiTietDVVanChuyenDTO data, [FromRoute] Guid id)
+        {
+            if (data == null)
+            {
+                return BadRequest(new { thongBao = "Thông tin chi tiết đơn vị vận chuyển không đủ" });
+            }
+            var res = await svc.PutShipping(data, id);
+            if (!res)
+            {
+                return BadRequest(new { thongBao = "Không tìm thấy mã đơn vị vận chuyển" });
+            }
+            return Ok("Cập nhật thành công");
+        }
         //5.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSP([FromRoute] string id)
