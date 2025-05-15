@@ -253,7 +253,7 @@ namespace shipping.Services.Implement
         public async Task<int> UpdateStatus(Guid id)
         {
             var exists = await _context.ChiTietDVVanChuyen.FirstOrDefaultAsync(x => x.ID == id);
-            if (exists == null) { return 404};
+            if (exists == null) { return 404; };
 
             exists.TrangThaiSuDung = !exists.TrangThaiSuDung;
 

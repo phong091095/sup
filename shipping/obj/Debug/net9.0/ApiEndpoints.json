@@ -359,6 +359,22 @@
   },
   {
     "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "UpdateStatus",
+    "RelativePath": "store/products/{id}/shipping",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
     "Method": "GetBTSP",
     "RelativePath": "store/products/{id}/variant",
     "HttpMethod": "GET",
