@@ -97,7 +97,7 @@
   {
     "ContainingType": "shipping.Controllers.ShippingController",
     "Method": "UpdateCTVC",
-    "RelativePath": "admin/shipping-providers/shipping/{id}",
+    "RelativePath": "admin/shipping-providers/detail/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -143,9 +143,120 @@
   },
   {
     "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "IGetActive",
+    "RelativePath": "admin/store/{id}/activities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
     "Method": "StoreApprove",
     "RelativePath": "admin/store/{id}/approve",
     "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "PutLockStore",
+    "RelativePath": "admin/store/{id}/lock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "lydo",
+        "Type": "shipping.Controllers.CuaHangController\u002BLyDoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "SendNotify",
+    "RelativePath": "admin/store/{id}/notify",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "info",
+        "Type": "shipping.Controllers.CuaHangController\u002BMailInfo",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "StoreReject",
+    "RelativePath": "admin/store/{id}/reject",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "lydo",
+        "Type": "shipping.Controllers.CuaHangController\u002BLyDoRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "GetStatusInfo",
+    "RelativePath": "admin/store/{id}/request-more-info",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.CuaHangController",
+    "Method": "PutStatusInfo",
+    "RelativePath": "admin/store/{id}/unlock",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -336,6 +447,27 @@
       {
         "Name": "request",
         "Type": "shipping.Model.RequestbodyDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "shipping.Controllers.SanPhamController",
+    "Method": "UpdateCTVC",
+    "RelativePath": "store/products/shipping/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "shipping.Model.DTO.ChiTietDVVanChuyenDTO",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "System.Guid",
         "IsRequired": true
       }
     ],

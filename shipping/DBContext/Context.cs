@@ -18,5 +18,6 @@ namespace shipping.DBContext
         public DbSet<Images> Images { get; set; }
         public DbSet<CuaHang> CuaHang {  get; set; }
         public DbSet<AspNetUsers> AspNetUsers { get; set; }
+        public DbSet<LogActiveties> LogActiveties { get; set; }
     }
 }

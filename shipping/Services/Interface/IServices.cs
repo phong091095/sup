@@ -95,6 +95,26 @@ namespace shipping.Services.Interface
     }
     public interface IRejectStore
     {
-        Task<int> RejectStore(string id);
+        Task<int> RejectStore(string id, string lydo);
+    }
+    public interface IGetStoreStatus
+    {
+        Task<string> GetStoreStatusByID(string id);
+    }
+    public interface IPutStoreStatus
+    {
+        Task<int> PutStoreStatus(string id);
+    }
+    public interface ILockStore
+    {
+        Task<bool> LockStore(string id,string lydo);
+    }
+    public interface IGetActive
+    {
+        Task<List<LogActiveties>> GetAllActive();
+    }
+    public interface ISendNotify
+    {
+        Task<bool> SendNotify(string id,string tieuDe, string noiDung);
     }
 }

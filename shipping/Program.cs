@@ -4,6 +4,7 @@ using shipping.Model;
 using shipping.Model.DTO;
 using shipping.Services.Implement;
 using shipping.Services.Interface;
+using WebAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,18 @@ builder.Services.AddScoped<BienTheSvc>();
 builder.Services.AddScoped<ShipSvc>();
 //
 builder.Services.AddScoped<ImageSvc>();
+builder.Services.AddScoped<SendMail>();
+//
+builder.Services.AddScoped<IGetAllStore, StoreSvc>();
+builder.Services.AddScoped<IPutApprove, StoreSvc>();
+builder.Services.AddScoped<IRejectStore, StoreSvc>();
+builder.Services.AddScoped<IGetStoreStatus, StoreSvc>();
+builder.Services.AddScoped<IPutStoreStatus, StoreSvc>();
+builder.Services.AddScoped<ILockStore, StoreSvc>(); 
+builder.Services.AddScoped<ISendNotify, StoreSvc>();
+builder.Services.AddScoped<IGetActive, StoreSvc>();
+
+
 var connectionString = builder.Configuration.GetConnectionString("Mydbtest");
 builder.Services.AddDbContext<Context>(option=>option.UseSqlServer(connectionString));
 
