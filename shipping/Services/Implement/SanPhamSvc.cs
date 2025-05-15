@@ -8,15 +8,13 @@ using static shipping.Model.TrangThaiTong;
 
 namespace shipping.Services.Implement
 {
-    public class SanPhamSvc : IGetDTO<ProductDetail>,IGetByRQ<ProductDetail>,IDeleTeDTO<SanPham>,IPutReview<ProductReview>, IPutSp<SanPhamDTO>
+    public class SanPhamSvc : IGetDTO<ProductDetail>,IGetByRQ<ProductDetail>,IDeleTeDTO<SanPham>,IPutReview<ProductReview>, IPutSp<SanPhamDTO>,IPutStatus
     {
         private readonly Context _context;
         public SanPhamSvc(Context context)
         {
             _context = context;
         }
-
-        
 
         public async Task<bool> DeleteData(string id)
         {
@@ -251,5 +249,17 @@ namespace shipping.Services.Implement
             await _context.SaveChangesAsync();
             return true;
         }
+
+        public async Task<int> UpdateStatus(Guid id)
+        {
+            var exists = await _context.ChiTietDVVanChuyen.FirstOrDefaultAsync(x => x.ID == id);
+            if (exists == null) { return 404};
+
+            exists.TrangThaiSuDung = !exists.TrangThaiSuDung;
+
+            await _context.SaveChangesAsync();
+            return 200;
+        }
+
     }
 }

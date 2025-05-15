@@ -97,6 +97,27 @@ namespace shipping.Controllers
             }
             return Ok("Cập nhật thành công");
         }
+        [HttpPatch("{id}/shipping")]
+        public async Task<IActionResult> UpdateStatus([FromRoute] Guid id)
+        {
+            if (id == Guid.Empty)
+                return BadRequest("ID không hợp lệ.");
+            var res = await spsvc.UpdateStatus(id);
+            if(res == 404)
+            {
+                return BadRequest("Không tồn tại chi tiết vận chuyển");
+            }
+            if(res == 200)
+            {
+                return Ok("Cập nhật trạng thái chi tiết thành công");
+            }
+            else
+            {
+                return BadRequest("Lỗi trong quá trình cập nhật. Vui lòng thử lại sau.");
+            }
+        }
+
+
         //5.
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSP([FromRoute] string id)

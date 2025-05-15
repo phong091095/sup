@@ -21,5 +21,6 @@ namespace shipping.Model
 
         public string ThoiGianDuKien { get; set; } = default!;
         public DateTime NgayCapNhat { get; set; } = DateTime.Now;
+        public bool TrangThaiSuDung { get; set; }
     }
 }
