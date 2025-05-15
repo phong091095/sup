@@ -142,7 +142,7 @@ namespace shipping.Controllers
         [HttpPost("{id}/notify")]
         public async Task<IActionResult> SendNotify([FromRoute] string id, [FromBody] MailInfo info)
         {
-            if (!string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Mã cửa hàng không có.");
             }

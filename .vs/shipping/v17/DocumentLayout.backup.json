@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "shipping\\appsettings.json",
               "ToolTip": "C:\\Users\\ttphong\\Downloads\\shipping\\shipping\\appsettings.json",
               "RelativeToolTip": "shipping\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-05-15T09:24:02.988Z",
               "EditorCaption": ""
@@ -55,8 +55,7 @@
               "RelativeToolTip": "shipping\\Controllers\\SanPhamController.cs",
               "ViewState": "AgIAAFsAAAAAAAAAAAAcwHMAAABWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T08:50:33.868Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-15T08:50:33.868Z"
             },
             {
               "$type": "Document",
@@ -68,8 +67,7 @@
               "RelativeToolTip": "shipping\\Services\\Implement\\SanPhamSvc.cs",
               "ViewState": "AgIAAOoAAAAAAAAAAAAswP8AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-15T08:45:25.212Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-15T08:45:25.212Z"
             },
             {
               "$type": "Document",
