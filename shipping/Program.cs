@@ -33,6 +33,7 @@ builder.Services.AddScoped<IPutGT,BienTheSvc>();
 builder.Services.AddScoped<SanPhamSvc>();
 builder.Services.AddScoped<BienTheSvc>();
 builder.Services.AddScoped<ShipSvc>();
+builder.Services.AddScoped<StoreSvc>();
 //
 builder.Services.AddScoped<ImageSvc>();
 builder.Services.AddScoped<SendMail>();
