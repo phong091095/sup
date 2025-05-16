@@ -202,45 +202,12 @@ namespace shipping.Services.Implement
             return true;
         }
 
-        public async Task<bool> PutReview(ProductReview type,string id)
+        public async Task<bool> PutReview(string id)
         {
             var exists = await _context.SanPham.FirstOrDefaultAsync(x => x.IDSanPham == id);
             if (exists == null)
             {
                 return false;
-            }
-            var bt = await _context.BienTheSanPham.Where(x => x.IDSanPham == exists.IDSanPham).ToListAsync();
-            if (!bt.Any())
-            {
-                return false;
-            }
-            var danhmuc =  await _context.DanhMuc.FirstOrDefaultAsync(x=> x.Path == type.PathDanhMuc);
-            exists.IDDanhMuc = danhmuc.IDDanhMuc;
-            exists.MoTa = type.MoTa;
-            exists.TenSanPham = type.TenSanPham;
-            danhmuc.Path = type.PathDanhMuc;
-            var listdto = type.BienTheSanPham;
-            foreach (var item in listdto)
-            {
-                var bienThe = item.bienthe;
-                var thongtin = item.GiaTriBienTheSanPham;
-                var existsbt = bt.FirstOrDefault(x => x.IDBienTheSanPham == type.IDBienTheSanPham);
-                if (existsbt == null)
-                {
-                    continue;
-                }
-                existsbt.SKU = bienThe.SKU;
-                existsbt.Gia = bienThe.Gia;
-                existsbt.SoLuong = bienThe.SoLuong;
-                foreach (var ttitem in thongtin)
-                {
-                    var gt = _context.GiaTriBTSP.FirstOrDefault(x => x.TenGiaTri == ttitem.TenGiaTri);
-                    if (gt == null) continue;
-
-                    var tt = _context.ThuocTinhBTSP.FirstOrDefault(x => x.ID == gt.IDThuocTinh);
-                    if (tt == null) continue;
-                    gt.TenGiaTri = ttitem.TenGiaTri;
-                }
             }
             if (exists.TrangThai == TrangThaiTong.TrangThaiSP.ViPham.ToString())
             {

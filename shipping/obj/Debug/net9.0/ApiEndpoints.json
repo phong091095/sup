@@ -345,11 +345,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "data",
-        "Type": "shipping.Model.ProductReview",
-        "IsRequired": true
-      },
-      {
         "Name": "id",
         "Type": "System.String",
         "IsRequired": true

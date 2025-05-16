@@ -217,13 +217,9 @@ namespace shipping.Controllers
         }
         //10.
         [HttpPost("{id}/request-review")]
-        public async Task<IActionResult> UpdateReview([FromBody] ProductReview data, [FromRoute] string id)
+        public async Task<IActionResult> UpdateReview( [FromRoute] string id)
         {
-            if(data == null)
-            {
-                return BadRequest("Dữ liệu không đầy đủ");
-            }
-            var res = await spsvc.PutReview(data,id);
+            var res = await spsvc.PutReview(id);
             if (!res)
             {
                 return BadRequest(new { thongBao = "Không thể gửi kiểm duyệt. Sản phẩm không tồn tại hoặc không ở trạng thái vi phạm" });

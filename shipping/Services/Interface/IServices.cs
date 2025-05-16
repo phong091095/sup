@@ -59,7 +59,7 @@ namespace shipping.Services.Interface
     }
     public interface IPutReview<Type>
     {
-        Task<bool> PutReview(ProductReview detail,string id);
+        Task<bool> PutReview(string id);
     }
     public interface IPutGT
     {
