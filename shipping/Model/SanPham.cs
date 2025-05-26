@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using shipping.Model.DanhMucModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace shipping.Model
@@ -15,6 +16,7 @@ namespace shipping.Model
         public string? MoTa { get; set; }
         public string? TrangThai { get; set; }
         public DateTime NgayTao { get; set; } = DateTime.Now;
+
         [ForeignKey("IDDanhMuc")]
         public DanhMuc DanhMuc { get; set; } = default!;
         public ICollection<BienTheSanPham> BienThes { get; set; } = new List<BienTheSanPham>();

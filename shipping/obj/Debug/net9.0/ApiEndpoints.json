@@ -449,22 +449,6 @@
   },
   {
     "ContainingType": "shipping.Controllers.SanPhamController",
-    "Method": "GetDataWithBodyRQ",
-    "RelativePath": "store/products/request",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "shipping.Model.RequestbodyDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "shipping.Controllers.SanPhamController",
     "Method": "UpdateCTVC",
     "RelativePath": "store/products/shipping/{id}",
     "HttpMethod": "PUT",

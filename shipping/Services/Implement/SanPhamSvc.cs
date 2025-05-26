@@ -8,7 +8,7 @@ using static shipping.Model.TrangThaiTong;
 
 namespace shipping.Services.Implement
 {
-    public class SanPhamSvc : IGetDTO<ProductDetail>,IGetByRQ<ProductDetail>,IDeleTeDTO<SanPham>,IPutReview<ProductReview>, IPutSp<SanPhamDTO>,IPutStatus
+    public class SanPhamSvc : ISanPham
     {
         private readonly Context _context;
         public SanPhamSvc(Context context)
@@ -75,57 +75,57 @@ namespace shipping.Services.Implement
 
 
 
-        public async Task<List<ProductDetail>?> GetDatabyRQ(RequestbodyDTO request)
-        {
-            var sanPhams = await _context.SanPham
-                .Include(sp => sp.DanhMuc)
-                .Include(sp => sp.Images)
-                .Include(sp => sp.BienThes)
-                    .ThenInclude(bt => bt.ChiTietBienThes)
-                        .ThenInclude(ct => ct.GiaTri)
-                            .ThenInclude(gt => gt.ThuocTinh)
-                            .Where(sp =>
-            (string.IsNullOrEmpty(request.TenSanPham) || sp.TenSanPham.ToLower().Contains(request.TenSanPham.ToLower())) &&
-            (string.IsNullOrEmpty(request.Path) || sp.DanhMuc.Path.ToLower().Contains(request.Path.ToLower()))
-        )
-                                    .ToListAsync();
+        //public async Task<List<ProductDetail>?> GetDatabyRQ(RequestbodyDTO request)
+        //{
+        //    var sanPhams = await _context.SanPham
+        //        .Include(sp => sp.DanhMuc)
+        //        .Include(sp => sp.Images)
+        //        .Include(sp => sp.BienThes)
+        //            .ThenInclude(bt => bt.ChiTietBienThes)
+        //                .ThenInclude(ct => ct.GiaTri)
+        //                    .ThenInclude(gt => gt.ThuocTinh)
+        //                    .Where(sp =>
+        //    (string.IsNullOrEmpty(request.TenSanPham) || sp.TenSanPham.ToLower().Contains(request.TenSanPham.ToLower())) &&
+        //    (string.IsNullOrEmpty(request.Path) || sp.DanhMuc.Path.ToLower().Contains(request.Path.ToLower()))
+        //)
+        //                            .ToListAsync();
 
-            if (sanPhams == null || !sanPhams.Any())
-                return null;
+        //    if (sanPhams == null || !sanPhams.Any())
+        //        return null;
 
-            var products = sanPhams.Select(sp => new ProductDetail
-            {
-                SanPham = new SanPhamDTO
-                {
-                    PathDanhMuc = sp.DanhMuc.Path,
-                    IDCuaHang = sp.IDCuaHang,
-                    TenSanPham = sp.TenSanPham,
-                    MoTa = sp.MoTa,
-                    TrangThai = sp.TrangThai,
-                    NgayTao = sp.NgayTao
-                },
-                Images = sp.Images.Select(x=>x.HinhAnh).ToList()
-                ,
-                DanhMuc = sp.DanhMuc?.TenDanhMuc ?? "",
-                BienTheSanPham = sp.BienThes.Select(bt => new BienTheSanPhamDTO
-                {
-                    bienthe = new BienTheSPDTO
-                    {
-                        Gia = bt.Gia,
-                        SoLuong = bt.SoLuong,
-                        SKU = bt.SKU,
-                        HinhAnhBienThe = bt.HinhAnh,
-                    },
-                    GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
-                    {
-                        TenGiaTri = ct.GiaTri?.TenGiaTri,
-                        TenThuocTinh = ct.GiaTri?.ThuocTinh?.TenThuocTinh
-                    }).ToList()
-                }).ToList()
-            }).ToList();
+        //    var products = sanPhams.Select(sp => new ProductDetail
+        //    {
+        //        SanPham = new SanPhamDTO
+        //        {
+        //            PathDanhMuc = sp.DanhMuc.Path,
+        //            IDCuaHang = sp.IDCuaHang,
+        //            TenSanPham = sp.TenSanPham,
+        //            MoTa = sp.MoTa,
+        //            TrangThai = sp.TrangThai,
+        //            NgayTao = sp.NgayTao
+        //        },
+        //        Images = sp.Images.Select(x=>x.HinhAnh).ToList()
+        //        ,
+        //        DanhMuc = sp.DanhMuc?.TenDanhMuc ?? "",
+        //        BienTheSanPham = sp.BienThes.Select(bt => new BienTheSanPhamDTO
+        //        {
+        //            bienthe = new BienTheSPDTO
+        //            {
+        //                Gia = bt.Gia,
+        //                SoLuong = bt.SoLuong,
+        //                SKU = bt.SKU,
+        //                HinhAnhBienThe = bt.HinhAnh,
+        //            },
+        //            GiaTriBienTheSanPham = bt.ChiTietBienThes.Select(ct => new GiaTriBienTheSanPhamDto
+        //            {
+        //                TenGiaTri = ct.GiaTri?.TenGiaTri,
+        //                TenThuocTinh = ct.GiaTri?.ThuocTinh?.TenThuocTinh
+        //            }).ToList()
+        //        }).ToList()
+        //    }).ToList();
 
-            return products;
-        }
+        //    return products;
+        //}
 
 
         public async Task<List<ProductDetail>> GetDatas()
@@ -142,7 +142,7 @@ namespace shipping.Services.Implement
             {
                 SanPham = new SanPhamDTO
                 {
-                    PathDanhMuc = sp.DanhMuc.Path,
+                    //PathDanhMuc = sp.DanhMuc.Path,
                     IDCuaHang = sp.IDCuaHang,
                     TenSanPham = sp.TenSanPham,
                     MoTa = sp.MoTa,
@@ -194,8 +194,8 @@ namespace shipping.Services.Implement
             {
                 return false;
             }
-            var danhmuc = await _context.DanhMuc.FirstOrDefaultAsync(x=>x.Path == type.PathDanhMuc);
-            exists.IDDanhMuc = danhmuc.IDDanhMuc;
+            //var danhmuc = await _context.DanhMuc.FirstOrDefaultAsync(x=>x.Path == type.PathDanhMuc);
+            //exists.IDDanhMuc = danhmuc.IDDanhMuc;
             exists.MoTa = type.MoTa;
             exists.TenSanPham = type.TenSanPham;    
             await _context.SaveChangesAsync();

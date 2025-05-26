@@ -7,7 +7,7 @@ using static shipping.Model.TrangThaiTong;
 
 namespace shipping.Services.Implement
 {
-    public class StoreSvc : IGetAllStore, IPutApprove, IRejectStore, IGetStoreStatus, IPutStoreStatus,ILockStore,IGetActive, ISendNotify
+    public class StoreSvc : IStore
     {
         private readonly Context _context;
         private readonly SendMail sendmail;

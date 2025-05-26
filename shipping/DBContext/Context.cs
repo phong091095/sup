@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using shipping.Model;
+using shipping.Model.DanhMucModel;
 namespace shipping.DBContext
 {
     public class Context : DbContext
@@ -9,7 +10,11 @@ namespace shipping.DBContext
         }
         public DbSet<ChiTietDVVanChuyen> ChiTietDVVanChuyen { get; set; }
         public DbSet<DonViVanChuyen> DonViVanChuyen { get;set; }
+        //
         public DbSet<DanhMuc> DanhMuc { get; set; }
+        public DbSet<DanhMucChild> DanhMucChild { get; set; }
+        public DbSet<DanhMucImages> DanhMucImages { get; set; }
+        //
         public DbSet<SanPham> SanPham { get; set; }
         public DbSet<BienTheSanPham> BienTheSanPham { get; set; }
         public DbSet<ChiTietBienTheSanPham> ChiTietBienTheSanPham { get; set; }

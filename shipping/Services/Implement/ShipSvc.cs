@@ -6,7 +6,7 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class ShipSvc : IShipServices<DonViVanChuyen>, IPostDVVC<DonViVanChuyenDTO>,IShipDTO<ChiTietDonViVanChuyenDTO>, IPutShip
+    public class ShipSvc : IShip
     {
         private readonly Context _context;
         public ShipSvc(Context context) {

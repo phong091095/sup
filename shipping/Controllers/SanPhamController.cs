@@ -25,19 +25,19 @@ namespace shipping.Controllers
             this.svc = svc;
         }
         //1
-        [HttpPost("request")]
-        public async Task<IActionResult> GetDataWithBodyRQ([FromBody] RequestbodyDTO request)
-        {
-            if (request == null)
-            {
-                return BadRequest(new { thongBao = "Thông tin tìm kiếm không đủ" });
-            }
-            var res = await spsvc.GetDatabyRQ(request);
-            if (res == null) {
-                return BadRequest(new { thongBao = "Không tìm thấy dữ liệu" });
-            }
-            return Ok(res);
-        }
+        //[HttpPost("request")]
+        //public async Task<IActionResult> GetDataWithBodyRQ([FromBody] RequestbodyDTO request)
+        //{
+        //    if (request == null)
+        //    {
+        //        return BadRequest(new { thongBao = "Thông tin tìm kiếm không đủ" });
+        //    }
+        //    var res = await spsvc.GetDatabyRQ(request);
+        //    if (res == null) {
+        //        return BadRequest(new { thongBao = "Không tìm thấy dữ liệu" });
+        //    }
+        //    return Ok(res);
+        //}
         //1.1
         [HttpGet]
         public async Task<IActionResult> GetAllData()
@@ -194,11 +194,14 @@ namespace shipping.Controllers
                 return BadRequest("Dữ liệu không đầy đủ");
             }
             var res = await bienTheSvc.CreateData(data,id);
-            if (res == null)
+            if (res.Success)
             {
-                return BadRequest(new { thongBao = "Thêm biến thể thất bại" });
+                return Ok(res.Message);
             }
-            return Ok(res);
+            else
+            {
+                return BadRequest(res.Message);
+            }
         }
         //9.
         [HttpDelete("variants/{id}")]

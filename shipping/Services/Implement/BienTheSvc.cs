@@ -7,7 +7,7 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class BienTheSvc : IGetAll<BienTheSanPham>, IPostDTO<BienTheSPDTO>, IDeleTeDTO<BienTheSanPham>, IPutGT
+    public class BienTheSvc : IBienThe
     {
         private readonly Context _context;
         private readonly ImageSvc _imageSvc;
@@ -17,24 +17,32 @@ namespace shipping.Services.Implement
             _imageSvc = imageSvc;
         }
 
-        public async Task<BienTheSPDTO> CreateData(BienTheSPDTO type, string id)
-        {
+        public async Task<BResponse> CreateData(BienTheSPDTO type, string id)
+       {
+            if(type.Gia < 1000)
+            {
+                return new BResponse( false, "Số tiền ít nhất là 1000 trở lên", 400);
+            }
+            if(type.SoLuong < 0)
+            {
+                return new BResponse(false, "Số lượng ít nhất là từ 0 trở lên", 400);
+            }
+            if(type.HinhAnhBienThe == null || type.HinhAnhBienThe.Length == 0)
+            {
+                return new BResponse(false, "Mhập đúng định dạng hình ảnh", 400);
+            }
             var count = _context.BienTheSanPham.Count() + 1;
             var item = new BienTheSanPham
             {
-                IDBienTheSanPham = "BTSP" + count,
+                IDBienTheSanPham = "BTSP" + Guid.NewGuid().ToString("N").Substring(0, 8),
                 IDSanPham = id,
                 Gia = type.Gia,
                 SKU = type.SKU,
-                SoLuong = type.SoLuong
-            };
-            var newimage = new Images
-            {
-                IDSanPham = "BTSP" + count,
+                SoLuong = type.SoLuong,
                 HinhAnh = type.HinhAnhBienThe
             };
             await _context.BienTheSanPham.AddAsync(item);
-            return type;
+            return new BResponse(true, "Tạo mới biến thể thành công", 200);
         }
         public async Task<bool> DeleteData(string id)
         {

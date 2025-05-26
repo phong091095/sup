@@ -5,7 +5,7 @@ using shipping.Services.Interface;
 
 namespace shipping.Services.Implement
 {
-    public class ImageSvc : IAddImage, IDeleteImage
+    public class ImageSvc : IImage
     {
         private readonly Context _context;
         public ImageSvc(Context context)
