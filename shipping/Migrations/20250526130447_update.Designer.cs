@@ -12,7 +12,7 @@ using shipping.DBContext;
 namespace shipping.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20250512132156_update")]
+    [Migration("20250526130447_update")]
     partial class update
     {
         /// <inheritdoc />
@@ -25,6 +25,112 @@ namespace shipping.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CategoriesService.Models.DanhMuc", b =>
+                {
+                    b.Property<int>("IDDanhMuc")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CapDanhMuc")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsLeaf")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TenDanhMuc")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("TrangThai")
+                        .HasColumnType("bit");
+
+                    b.HasKey("IDDanhMuc");
+
+                    b.ToTable("DanhMucs");
+                });
+
+            modelBuilder.Entity("CategoriesService.Models.HinhAnhDanhMuc", b =>
+                {
+                    b.Property<int>("IDHinhAnhDanhMuc")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDHinhAnhDanhMuc"));
+
+                    b.Property<byte[]>("HinhAnh")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("IDDanhMuc")
+                        .HasColumnType("int");
+
+                    b.HasKey("IDHinhAnhDanhMuc");
+
+                    b.HasIndex("IDDanhMuc");
+
+                    b.ToTable("HinhAnhDanhMucs");
+                });
+
+            modelBuilder.Entity("shipping.Model.AspNetUsers", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int?>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailConfirmed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LockoutEnd")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumberConfirmed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("AspNetUsers");
+                });
+
             modelBuilder.Entity("shipping.Model.BienTheSanPham", b =>
                 {
                     b.Property<string>("IDBienTheSanPham")
@@ -34,8 +140,9 @@ namespace shipping.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("IDHinhAnh")
-                        .HasColumnType("int");
+                    b.Property<byte[]>("HinhAnh")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("IDSanPham")
                         .IsRequired()
@@ -48,8 +155,6 @@ namespace shipping.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("IDBienTheSanPham");
-
-                    b.HasIndex("IDHinhAnh");
 
                     b.HasIndex("IDSanPham");
 
@@ -91,7 +196,6 @@ namespace shipping.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("IDCuaHang")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IDDonViVanChuyen")
@@ -108,6 +212,9 @@ namespace shipping.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("TrangThaiSuDung")
+                        .HasColumnType("bit");
+
                     b.HasKey("ID");
 
                     b.HasIndex("IDDonViVanChuyen");
@@ -115,33 +222,32 @@ namespace shipping.Migrations
                     b.ToTable("ChiTietDVVanChuyen");
                 });
 
-            modelBuilder.Entity("shipping.Model.DanhMuc", b =>
+            modelBuilder.Entity("shipping.Model.CuaHang", b =>
                 {
-                    b.Property<int>("IDDanhMuc")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("IDCuaHang")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IDDanhMuc"));
-
-                    b.Property<int>("CapDanhMuc")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsLeaf")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Path")
+                    b.Property<string>("DiaChi")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TenDanhMuc")
+                    b.Property<int>("ID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("NgayDangKy")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TenCuaHang")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TrangThai")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IDDanhMuc");
+                    b.HasKey("IDCuaHang");
 
-                    b.ToTable("DanhMuc");
+                    b.ToTable("CuaHang");
                 });
 
             modelBuilder.Entity("shipping.Model.DonViVanChuyen", b =>
@@ -207,16 +313,37 @@ namespace shipping.Migrations
 
                     b.Property<string>("IDSanPham")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SanPhamIDSanPham")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SanPhamIDSanPham");
+                    b.HasIndex("IDSanPham");
 
                     b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("shipping.Model.LogActiveties", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogActiveties");
                 });
 
             modelBuilder.Entity("shipping.Model.SanPham", b =>
@@ -268,14 +395,19 @@ namespace shipping.Migrations
                     b.ToTable("ThuocTinhBTSP");
                 });
 
-            modelBuilder.Entity("shipping.Model.BienTheSanPham", b =>
+            modelBuilder.Entity("CategoriesService.Models.HinhAnhDanhMuc", b =>
                 {
-                    b.HasOne("shipping.Model.Images", "images")
-                        .WithMany()
-                        .HasForeignKey("IDHinhAnh")
+                    b.HasOne("CategoriesService.Models.DanhMuc", "DanhMuc")
+                        .WithMany("HinhAnhDanhMucs")
+                        .HasForeignKey("IDDanhMuc")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("DanhMuc");
+                });
+
+            modelBuilder.Entity("shipping.Model.BienTheSanPham", b =>
+                {
                     b.HasOne("shipping.Model.SanPham", "SanPham")
                         .WithMany("BienThes")
                         .HasForeignKey("IDSanPham")
@@ -283,8 +415,6 @@ namespace shipping.Migrations
                         .IsRequired();
 
                     b.Navigation("SanPham");
-
-                    b.Navigation("images");
                 });
 
             modelBuilder.Entity("shipping.Model.ChiTietBienTheSanPham", b =>
@@ -330,15 +460,19 @@ namespace shipping.Migrations
 
             modelBuilder.Entity("shipping.Model.Images", b =>
                 {
-                    b.HasOne("shipping.Model.SanPham", null)
+                    b.HasOne("shipping.Model.SanPham", "SanPham")
                         .WithMany("Images")
-                        .HasForeignKey("SanPhamIDSanPham");
+                        .HasForeignKey("IDSanPham")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SanPham");
                 });
 
             modelBuilder.Entity("shipping.Model.SanPham", b =>
                 {
-                    b.HasOne("shipping.Model.DanhMuc", "DanhMuc")
-                        .WithMany("SanPhams")
+                    b.HasOne("CategoriesService.Models.DanhMuc", "DanhMuc")
+                        .WithMany()
                         .HasForeignKey("IDDanhMuc")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -346,14 +480,14 @@ namespace shipping.Migrations
                     b.Navigation("DanhMuc");
                 });
 
+            modelBuilder.Entity("CategoriesService.Models.DanhMuc", b =>
+                {
+                    b.Navigation("HinhAnhDanhMucs");
+                });
+
             modelBuilder.Entity("shipping.Model.BienTheSanPham", b =>
                 {
                     b.Navigation("ChiTietBienThes");
-                });
-
-            modelBuilder.Entity("shipping.Model.DanhMuc", b =>
-                {
-                    b.Navigation("SanPhams");
                 });
 
             modelBuilder.Entity("shipping.Model.DonViVanChuyen", b =>

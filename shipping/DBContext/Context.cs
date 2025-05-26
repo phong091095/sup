@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CategoriesService.Models;
+using Microsoft.EntityFrameworkCore;
 using shipping.Model;
-using shipping.Model.DanhMucModel;
 namespace shipping.DBContext
 {
     public class Context : DbContext
@@ -9,11 +9,8 @@ namespace shipping.DBContext
         {
         }
         public DbSet<ChiTietDVVanChuyen> ChiTietDVVanChuyen { get; set; }
-        public DbSet<DonViVanChuyen> DonViVanChuyen { get;set; }
-        //
-        public DbSet<DanhMuc> DanhMuc { get; set; }
-        public DbSet<DanhMucChild> DanhMucChild { get; set; }
-        public DbSet<DanhMucImages> DanhMucImages { get; set; }
+        public DbSet<DonViVanChuyen> DonViVanChuyen { get; set; }
+
         //
         public DbSet<SanPham> SanPham { get; set; }
         public DbSet<BienTheSanPham> BienTheSanPham { get; set; }
@@ -24,5 +21,19 @@ namespace shipping.DBContext
         public DbSet<CuaHang> CuaHang {  get; set; }
         public DbSet<AspNetUsers> AspNetUsers { get; set; }
         public DbSet<LogActiveties> LogActiveties { get; set; }
+        //
+        public DbSet<DanhMuc> DanhMucs { get; set; }
+        public DbSet<CategoriesService.Models.HinhAnhDanhMuc> HinhAnhDanhMucs { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<DanhMuc>()
+                .Property(d => d.IDDanhMuc)
+                .ValueGeneratedNever();
+            modelBuilder.Entity<CategoriesService.Models.HinhAnhDanhMuc>()
+                .Property(h => h.IDHinhAnhDanhMuc)
+                .ValueGeneratedOnAdd();
+        }
     }
 }

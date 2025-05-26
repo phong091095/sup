@@ -1,3 +1,4 @@
+using CategoriesService.Services;
 using Microsoft.EntityFrameworkCore;
 using shipping.DBContext;
 using shipping.Model;
@@ -31,6 +32,8 @@ builder.Services.AddScoped<SendMail>();
 builder.Services.AddScoped<IStore, StoreSvc>();
 //
 builder.Services.AddScoped<IImage,ImageSvc>();
+builder.Services.AddHttpClient<IBadWordService, BadWordService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var connectionString = builder.Configuration.GetConnectionString("Mydbtest");
 builder.Services.AddDbContext<Context>(option=>option.UseSqlServer(connectionString));

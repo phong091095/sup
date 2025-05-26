@@ -1,4 +1,4 @@
-﻿using shipping.Model.DanhMucModel;
+﻿using CategoriesService.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

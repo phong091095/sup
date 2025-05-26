@@ -12,20 +12,61 @@ namespace shipping.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "DanhMuc",
+                name: "AspNetUsers",
                 columns: table => new
                 {
-                    IDDanhMuc = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TenDanhMuc = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailConfirmed = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: true),
+                    LockoutEnd = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: true),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CuaHang",
+                columns: table => new
+                {
+                    IDCuaHang = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false),
+                    TenCuaHang = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DiaChi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TrangThai = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NgayDangKy = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CuaHang", x => x.IDCuaHang);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DanhMucs",
+                columns: table => new
+                {
+                    IDDanhMuc = table.Column<int>(type: "int", nullable: false),
+                    TenDanhMuc = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     CapDanhMuc = table.Column<int>(type: "int", nullable: false),
-                    Path = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TrangThai = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TrangThai = table.Column<bool>(type: "bit", nullable: false),
                     IsLeaf = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_DanhMuc", x => x.IDDanhMuc);
+                    table.PrimaryKey("PK_DanhMucs", x => x.IDDanhMuc);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,6 +86,21 @@ namespace shipping.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "LogActiveties",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TimeStamp = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Action = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LogActiveties", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ThuocTinhBTSP",
                 columns: table => new
                 {
@@ -58,6 +114,26 @@ namespace shipping.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "HinhAnhDanhMucs",
+                columns: table => new
+                {
+                    IDHinhAnhDanhMuc = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IDDanhMuc = table.Column<int>(type: "int", nullable: false),
+                    HinhAnh = table.Column<byte[]>(type: "varbinary(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HinhAnhDanhMucs", x => x.IDHinhAnhDanhMuc);
+                    table.ForeignKey(
+                        name: "FK_HinhAnhDanhMucs_DanhMucs_IDDanhMuc",
+                        column: x => x.IDDanhMuc,
+                        principalTable: "DanhMucs",
+                        principalColumn: "IDDanhMuc",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SanPham",
                 columns: table => new
                 {
@@ -65,7 +141,6 @@ namespace shipping.Migrations
                     IDDanhMuc = table.Column<int>(type: "int", nullable: false),
                     IDCuaHang = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TenSanPham = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HinhAnhChinh = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     MoTa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrangThai = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NgayTao = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -74,9 +149,9 @@ namespace shipping.Migrations
                 {
                     table.PrimaryKey("PK_SanPham", x => x.IDSanPham);
                     table.ForeignKey(
-                        name: "FK_SanPham_DanhMuc_IDDanhMuc",
+                        name: "FK_SanPham_DanhMucs_IDDanhMuc",
                         column: x => x.IDDanhMuc,
-                        principalTable: "DanhMuc",
+                        principalTable: "DanhMucs",
                         principalColumn: "IDDanhMuc",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -86,11 +161,12 @@ namespace shipping.Migrations
                 columns: table => new
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IDCuaHang = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IDCuaHang = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IDDonViVanChuyen = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PhiVanChuyen = table.Column<int>(type: "int", nullable: false),
                     ThoiGianDuKien = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NgayCapNhat = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    NgayCapNhat = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TrangThaiSuDung = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -128,10 +204,10 @@ namespace shipping.Migrations
                 columns: table => new
                 {
                     IDBienTheSanPham = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Gia = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Gia = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     SoLuong = table.Column<int>(type: "int", nullable: false),
                     SKU = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HinhAnhBienThe = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    HinhAnh = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     IDSanPham = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -143,6 +219,25 @@ namespace shipping.Migrations
                         principalTable: "SanPham",
                         principalColumn: "IDSanPham",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Images",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HinhAnh = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    IDSanPham = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Images", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Images_SanPham_SanPhamIDSanPham",
+                        column: x => x.IDSanPham,
+                        principalTable: "SanPham",
+                        principalColumn: "IDSanPham");
                 });
 
             migrationBuilder.CreateTable(
@@ -198,6 +293,16 @@ namespace shipping.Migrations
                 column: "IDThuocTinh");
 
             migrationBuilder.CreateIndex(
+                name: "IX_HinhAnhDanhMucs_IDDanhMuc",
+                table: "HinhAnhDanhMucs",
+                column: "IDDanhMuc");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Images_SanPhamIDSanPham",
+                table: "Images",
+                column: "SanPhamIDSanPham");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SanPham_IDDanhMuc",
                 table: "SanPham",
                 column: "IDDanhMuc");
@@ -207,10 +312,25 @@ namespace shipping.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
                 name: "ChiTietBienTheSanPham");
 
             migrationBuilder.DropTable(
                 name: "ChiTietDVVanChuyen");
+
+            migrationBuilder.DropTable(
+                name: "CuaHang");
+
+            migrationBuilder.DropTable(
+                name: "HinhAnhDanhMucs");
+
+            migrationBuilder.DropTable(
+                name: "Images");
+
+            migrationBuilder.DropTable(
+                name: "LogActiveties");
 
             migrationBuilder.DropTable(
                 name: "BienTheSanPham");
@@ -228,7 +348,7 @@ namespace shipping.Migrations
                 name: "ThuocTinhBTSP");
 
             migrationBuilder.DropTable(
-                name: "DanhMuc");
+                name: "DanhMucs");
         }
     }
 }

@@ -168,3 +168,4 @@ C:\Users\ttphong\Downloads\shipping\shipping\bin\Debug\net9.0\runtimes\win\lib\n
 C:\Users\ttphong\Downloads\shipping\shipping\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\ttphong\Downloads\shipping\shipping\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\Users\ttphong\Downloads\shipping\shipping\obj\Debug\net9.0\shipping.sourcelink.json
+C:\Users\ttphong\Downloads\shipping\shipping\bin\Debug\net9.0\Newtonsoft.Json.dll
